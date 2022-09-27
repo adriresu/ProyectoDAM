@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ProyectoDAM</string>
+    <string name="login_name">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_email">Email</string>
+    <string name="login_telf">Phone</string>
+    <string name="login_password2">Repeat Password</string>
+</resources>
