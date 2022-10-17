@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">ProyectoDAM</string>
+    <string name="name">Name</string>
     <string name="login_name">Username</string>
     <string name="login_password">Password</string>
     <string name="login_email">Email</string>
     <string name="login_telf">Phone</string>
     <string name="login_password2">Repeat Password</string>
+
+    <string name="errorRegister01">Username must have more than 5 characters</string>
+    <string name="errorRegister02">Please write the Passwords</string>
+    <string name="errorRegister03">The passwords dont match</string>
+    <string name="errorRegister04">Please write a password</string>
+    <string name="errorRegister05">Password must have 8 characters or more</string>
+    <string name="errorRegister06">Email format is not valid</string>
+    <string name="errorRegister07">Please write an email</string>
 </resources>
