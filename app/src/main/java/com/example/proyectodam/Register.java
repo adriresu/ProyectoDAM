@@ -4,12 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.Objects;
 
 public class Register extends AppCompatActivity {
 
@@ -19,11 +16,11 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         //Control definitions
-        EditText txtUsername = (EditText) findViewById(R.id.inputName);
-        EditText txtPassword = (EditText) findViewById(R.id.inputPassword);
-        EditText txtPassword2 = (EditText) findViewById(R.id.inputPassword2);
-        EditText txtEmail = (EditText) findViewById(R.id.inputEmail);
-        Button btnRegister = (Button) findViewById(R.id.buttonRegister);
+        EditText txtUsername = (EditText) findViewById(R.id.inputNameRegister);
+        EditText txtPassword = (EditText) findViewById(R.id.inputPasswordRegister);
+        EditText txtPassword2 = (EditText) findViewById(R.id.inputPassword2Register);
+        EditText txtEmail = (EditText) findViewById(R.id.inputEmailRegister);
+        Button btnRegister = (Button) findViewById(R.id.buttonLogin);
 
         //Button to register, connect to BBDD
         btnRegister.setOnClickListener(view -> {
