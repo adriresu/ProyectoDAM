@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/nameAdminView"
+        android:layout_width="98dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Ramiro"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <EditText
+        android:id="@+id/idAdminView"
+        android:layout_width="30dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="99"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/sortNameAdminView"
+        android:layout_width="143dp"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Castro Castro"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <EditText
+        android:id="@+id/emailAdminView"
+        android:layout_width="206dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="adriresu@gmail.com"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/userAdminView"
+        android:layout_width="150dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="adri_resuXsniperNoSeQue"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="71dp" />
+
+    <EditText
+        android:id="@+id/passwordAdminView"
+        android:layout_width="184dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="passwordpassword"
+        tools:layout_editor_absoluteX="188dp"
+        tools:layout_editor_absoluteY="71dp" />
+
+    <CheckBox
+        android:id="@+id/adminAdminView"
+        android:layout_width="74dp"
+        android:layout_height="35dp"
+        android:text="Admin"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
