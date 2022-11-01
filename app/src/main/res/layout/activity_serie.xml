@@ -31,14 +31,14 @@
                 android:text="Genero" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tituloLV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Anho Estreno" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/generoLV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -63,14 +63,14 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/estadoLV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Titulo" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tipoLV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sinopsis" />
