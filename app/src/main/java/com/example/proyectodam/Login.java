@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -51,14 +54,17 @@ public class Login extends AppCompatActivity {
             Boolean flag = true;
             String[] errors = new String[10];
 
-            if (flag) { //Proceed to register on BBDD (WS)
+            if (flag) { //Proceed to Login on BBDD (WS)
                 try {
                     String respuesta = makeRequest(txtUsername.getText().toString(), txtPassword.getText().toString());
-                    if (respuesta == "true"){
-                        Toast.makeText(this, "BIEN", Toast.LENGTH_SHORT).show();
+                    if (respuesta.equals("True")){
+                        Intent intent = new Intent(Login.this, mainMenu.class);
+                        intent.putExtra("user", txtUsername.getText().toString());
+                        intent.putExtra("password", txtPassword.getText().toString());
+                        startActivity(intent);
                     }
                     else{
-                        Toast.makeText(this, respuesta, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Name or password are incorect, please, try again", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -71,15 +77,14 @@ public class Login extends AppCompatActivity {
     }
 
     private String makeRequest(String username, String password) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.132:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
         multipartRequest.addFormField("Tipo", "Login");
         multipartRequest.addFormField("username", username);
         multipartRequest.addFormField("password", password);
+        multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
-        JsonObject obj = new JsonParser().parse(response.get(0)).getAsJsonObject();
-        String respuesta = obj.get("response").getAsString();
-        Toast.makeText(this, respuesta, Toast.LENGTH_SHORT).show();
-        return respuesta;
+        JSONObject json = new JSONObject(response.get(0));
+        return json.getString("response");
     }
 
 
