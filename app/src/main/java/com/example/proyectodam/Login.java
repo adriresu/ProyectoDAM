@@ -52,7 +52,15 @@ public class Login extends AppCompatActivity {
         //Button to Login
         btnRegister.setOnClickListener(view -> {
             Boolean flag = true;
-            String[] errors = new String[10];
+
+            if (txtUsername.getText().length() <= 0){
+                txtUsername.setError("Enter Username");
+                flag = false;
+            }
+            if (txtPassword.getText().length() <= 0){
+                txtPassword.setError("Enter Password");
+                flag = false;
+            }
 
             if (flag) { //Proceed to Login on BBDD (WS)
                 try {
@@ -77,7 +85,7 @@ public class Login extends AppCompatActivity {
     }
 
     private String makeRequest(String username, String password) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.0.17:80", "UTF-8");
         multipartRequest.addFormField("Tipo", "Login");
         multipartRequest.addFormField("username", username);
         multipartRequest.addFormField("password", password);

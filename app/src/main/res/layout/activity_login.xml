@@ -5,40 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradientblackbackground"
     tools:context=".Login">
 
-    <TextView
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_name"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="105dp" />
+        android:text="LOGIN"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/inputNameLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:hint="@string/login_name"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:textSize="27dp"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawablePadding="40dp"
 
-    <TextView
-        android:id="@+id/txtPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login_password" />
+        />
 
     <EditText
         android:id="@+id/inputPasswordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:hint="@string/login_password"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:textSize="27dp"
+        android:drawableLeft="@drawable/passwordkey"
+        android:drawablePadding="40dp"
+        />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:textColor="@color/white"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:background="@color/black"
+        android:text="SIGN IN"
+
+        >
+    </Button>
 
 </LinearLayout>
