@@ -3,6 +3,7 @@ package com.example.proyectodam;
 import android.graphics.Bitmap;
 
 public class serieItem {
+    private int id;
     private Bitmap caratula;
     private String titulo;
     private String genero;
@@ -24,6 +25,9 @@ public class serieItem {
     public String getTipo(){
         return tipo;
     }
+    public int getID(){
+        return id;
+    }
     //#endregion
 
     //#region   SETTER
@@ -40,9 +44,20 @@ public class serieItem {
     public void setTipo(String tipo){
         this.tipo = tipo;
     }
-    //#endregionD
+    public void setID(int id){
+        this.id = id;
+    }
+    //#endregion
 
     public serieItem(String titulo, String genero, String estado, String tipo){
+        this.titulo = titulo;
+        this.genero = genero;
+        this.estado = estado;
+        this.tipo = tipo;
+    }
+
+    public serieItem(int id, String estado, String genero, String tipo, String titulo){
+        this.id = id;
         this.titulo = titulo;
         this.genero = genero;
         this.estado = estado;

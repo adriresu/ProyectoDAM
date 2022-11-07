@@ -86,7 +86,7 @@ public class Register extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else{
-                        Toast.makeText(this, "Please fill fields correctly", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Please fill all the fields correctly", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
