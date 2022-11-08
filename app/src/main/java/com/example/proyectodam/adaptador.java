@@ -2,13 +2,11 @@ package com.example.proyectodam;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -31,6 +29,7 @@ public class adaptador extends BaseAdapter {
         TextView Genero;
         TextView Estado;
         TextView Tipo;
+        TextView ID;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -40,10 +39,11 @@ public class adaptador extends BaseAdapter {
         if(view == null){
             view = Inflater.inflate(R.layout.structuremain, null);
             Holder = new ViewHolder();
-            Holder.Titulo = (TextView) view.findViewById(R.id.tituloLV);
-            Holder.Genero = (TextView) view.findViewById(R.id.generoLV);
+            Holder.Titulo = (TextView) view.findViewById(R.id.anhoEstrenoSerieView);
+            Holder.Genero = (TextView) view.findViewById(R.id.estadoSerieView);
             Holder.Estado = (TextView) view.findViewById(R.id.estadoLV);
-            Holder.Tipo = (TextView) view.findViewById(R.id.tipoLV);
+            Holder.Tipo = (TextView) view.findViewById(R.id.sinopsisSerieView);
+            Holder.ID = (TextView) view.findViewById(R.id.idSerieView);
             view.setTag(Holder);
         }
         else{
@@ -55,6 +55,7 @@ public class adaptador extends BaseAdapter {
         Holder.Genero.setText(serie.getGenero());
         Holder.Estado.setText(String.valueOf(serie.getEstado()));
         Holder.Tipo.setText(String.valueOf(serie.getTipo()));
+        Holder.ID.setText(String.valueOf(serie.getID()));
         return view;
     }
 

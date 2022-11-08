@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +24,10 @@ public class mainMenu extends AppCompatActivity {
     public static ArrayList<serieItem> listaSeries = new ArrayList<serieItem>();
     ListView listview;
 
+    //Loggin Info
+    String name;
+    String password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +35,15 @@ public class mainMenu extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        ListView listView = (ListView)findViewById(R.id.customListaSeries);
+        name = getIntent().getStringExtra("user");
+        password = getIntent().getStringExtra("password");
+    }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        ListView listView = (ListView)findViewById(R.id.customListaSeries);
+        listaSeries.clear();
         try {
             JSONArray array =  makeRequest();
             JSONArray jsonArray = (JSONArray)array;
@@ -59,9 +72,18 @@ public class mainMenu extends AppCompatActivity {
 
         adaptador adaptador = new adaptador(this, listaSeries);
         listView.setAdapter(adaptador);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(mainMenu.this, Serie.class);
+                intent.putExtra("user", name);
+                intent.putExtra("password", password);
+                intent.putExtra("IDserie", Integer.toString(listaSeries.get(position).getID()));
+                startActivity(intent);
+            }
+        });
 
-
-    }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
