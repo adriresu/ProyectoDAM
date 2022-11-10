@@ -110,7 +110,7 @@ public class Serie extends AppCompatActivity {
                 Intent intent = new Intent(Serie.this, Character.class);
                 intent.putExtra("user", user);
                 intent.putExtra("password", password);
-                intent.putExtra("IDserie", Integer.toString(listaCharacter.get(position).getID()));
+                intent.putExtra("id", Integer.toString(listaCharacter.get(position).getID()));
                 startActivity(intent);
             }
         });
