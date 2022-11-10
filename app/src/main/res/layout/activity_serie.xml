@@ -43,14 +43,14 @@
                 android:text="Genero" />
 
             <TextView
-                android:id="@+id/anhoEstrenoSerieView"
+                android:id="@+id/nombreCharacterView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Anho Estreno" />
 
             <TextView
-                android:id="@+id/estadoSerieView"
+                android:id="@+id/personalidadCharacterView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,21 +75,29 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/estadoLV"
+        android:id="@+id/apellidosCharacterView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Titulo" />
 
     <TextView
-        android:id="@+id/sinopsisSerieView"
+        android:id="@+id/origenCharacterView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sinopsis" />
 
     <ListView
         android:id="@+id/listaPersonajes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="fill_parent"
+        android:clickable="true"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:divider="@color/black"
+        android:dividerHeight="2dp"
+        android:listSelector="@color/purple_200" />
 
 </LinearLayout>
