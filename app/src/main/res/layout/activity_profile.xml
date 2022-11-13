@@ -5,82 +5,252 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradientblackbackground"
     tools:context=".Profile">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/white"
+                android:text="Administrador" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="32dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtNameProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="187dp"
+                tools:layout_editor_absoluteY="187dp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="220dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtSurname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Surname"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="187dp"
+                tools:layout_editor_absoluteY="187dp" />
+
+            <EditText
+                android:id="@+id/edtTextSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="220dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtUsernameProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_name"
+                tools:layout_editor_absoluteX="173dp"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteY="315dp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="343dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_password"
+                tools:layout_editor_absoluteX="173dp"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteY="315dp" />
+
+            <EditText
+                android:id="@+id/editTextTextPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="343dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtTelfProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_telf"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="173dp"
+                tools:layout_editor_absoluteY="422dp" />
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="91dp"
+                tools:layout_editor_absoluteY="460dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtEmailProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_email"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="178dp"
+                tools:layout_editor_absoluteY="539dp" />
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="91dp"
+                tools:layout_editor_absoluteY="588dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
 
     <TextView
-        android:id="@+id/txtNameProfile"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtSerieFav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/name"
-        tools:layout_editor_absoluteX="187dp"
-        tools:layout_editor_absoluteY="187dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="220dp" />
-
-    <TextView
-        android:id="@+id/txtUsernameProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_name"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="315dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="343dp" />
-
-    <TextView
-        android:id="@+id/txtTelfProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_telf"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="422dp" />
-
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="460dp" />
-
-    <TextView
-        android:id="@+id/txtEmailProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_email"
+        android:text="Serie Favorita"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textAlignment="center"
         tools:layout_editor_absoluteX="178dp"
         tools:layout_editor_absoluteY="539dp" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextSerieFav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:textColor="@color/white"
         tools:layout_editor_absoluteX="91dp"
         tools:layout_editor_absoluteY="588dp" />
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:tooltipText="Serie Favorita"
+        android:spinnerMode="dropdown"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </LinearLayout>

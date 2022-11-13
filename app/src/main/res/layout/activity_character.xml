@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradientblackbackground"
+    tools:context=".Character">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Character">
+    android:background="@drawable/gradientblackbackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/nombreCharacter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:layout_marginLeft="20dp"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/apellidosCharacter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
             android:text="TextView" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/imageCharacter"
-        android:layout_width="275dp"
-        android:layout_height="277dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
         tools:layout_editor_absoluteX="93dp"
         tools:layout_editor_absoluteY="48dp"
         tools:srcCompat="@tools:sample/avatars" />
@@ -36,6 +49,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -47,12 +63,18 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Edad" />
 
             <TextView
                 android:id="@+id/edadCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="15" />
         </LinearLayout>
 
@@ -65,12 +87,18 @@
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Poder" />
 
             <TextView
                 android:id="@+id/poderCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Se puede estirar mucho y pegar cabezazos" />
         </LinearLayout>
 
@@ -83,12 +111,18 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Actor" />
 
             <TextView
                 android:id="@+id/actorCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Juan Pablo Gomez" />
         </LinearLayout>
 
@@ -101,12 +135,18 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Origen" />
 
             <TextView
                 android:id="@+id/origenCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Baltimore" />
         </LinearLayout>
 
@@ -119,12 +159,18 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Personalidad" />
 
             <TextView
                 android:id="@+id/personalidadCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="20dp"
                 android:text="Baltimore" />
         </LinearLayout>
 
@@ -136,20 +182,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20dp"
                 android:text="Descripcion" />
 
             <TextView
                 android:id="@+id/descripcionCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20dp"
                 android:text="Este es un senhor que hace cosas Este es un senhor que hace cosas Este es un senhor que hace cosas Este es un senhor que hace cosas Este es un senhor que hace cosas" />
         </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
+</ScrollView>

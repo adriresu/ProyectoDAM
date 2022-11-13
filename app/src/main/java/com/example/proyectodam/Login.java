@@ -8,30 +8,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.EditText;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 
@@ -40,17 +21,26 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
+
         setContentView(R.layout.activity_login);
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
 
         //Control definitions
         EditText txtUsername = (EditText) findViewById(R.id.inputNameLogin);
         EditText txtPassword = (EditText) findViewById(R.id.inputPasswordLogin);
-        Button btnRegister = (Button) findViewById(R.id.buttonLogin);
+        Button btnLogin = (Button) findViewById(R.id.buttonLogin);
+        Button btnRegister = (Button) findViewById(R.id.buttonRegister);
 
         //Button to Login
-        btnRegister.setOnClickListener(view -> {
+        btnLogin.setOnClickListener(view -> {
             Boolean flag = true;
 
             if (txtUsername.getText().length() <= 0){
@@ -82,10 +72,14 @@ public class Login extends AppCompatActivity {
                 //If fails show messages
             }
         });
+        btnRegister.setOnClickListener(view -> {
+            Intent intent = new Intent(Login.this, Register.class);
+            startActivity(intent);
+        });
     }
 
     private String makeRequest(String username, String password) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.0.17:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
         multipartRequest.addFormField("Tipo", "Login");
         multipartRequest.addFormField("username", username);
         multipartRequest.addFormField("password", password);

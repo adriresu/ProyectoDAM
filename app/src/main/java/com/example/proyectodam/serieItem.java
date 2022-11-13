@@ -53,7 +53,15 @@ public class serieItem {
         this.titulo = titulo;
         this.genero = genero;
         this.estado = estado;
-        this.tipo = tipo;
+        if (Integer.parseInt(tipo) == 1){
+            this.tipo = "Anime";
+        }
+        else if(Integer.parseInt(tipo) == 2){
+            this.tipo = "Serie";
+        }
+        else{
+            this.tipo = "Pelicula";
+        }
     }
 
     public serieItem(int id, String estado, String genero, String tipo, String titulo){
@@ -61,6 +69,14 @@ public class serieItem {
         this.titulo = titulo;
         this.genero = genero;
         this.estado = estado;
-        this.tipo = tipo;
+        if (Integer.parseInt(tipo) == 1){
+            this.tipo = "Anime";
+        }
+        else if(Integer.parseInt(tipo) == 2){
+            this.tipo = "Serie";
+        }
+        else{
+            this.tipo = "Pelicula";
+        }
     }
 }

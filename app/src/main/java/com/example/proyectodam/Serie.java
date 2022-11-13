@@ -55,10 +55,20 @@ public class Serie extends AppCompatActivity {
                 int len = array.length();
                 for (int i=0;i<len;i++){
                     JSONObject dataSerie = (JSONObject) array.get(i);
+
+                    if (Integer.parseInt(dataSerie.getString("Tipo")) == 1){
+                        txtTipo.setText("Anime");
+                    }
+                    else if(Integer.parseInt(dataSerie.getString("Tipo")) == 2){
+                        txtTipo.setText("Serie");
+                    }
+                    else{
+                        txtTipo.setText("Pelicula");
+                    }
+
                     txtTittle.setText(dataSerie.getString("Titulo"));
                     txtEstado.setText(dataSerie.getString("Estado"));
                     txtGenero.setText(dataSerie.getString("Genero"));
-                    txtTipo.setText(dataSerie.getString("Tipo"));
                     txtAnhoEstreno.setText(dataSerie.getString("Anho_estreno"));
                     txtSinopsis.setText(dataSerie.getString("Sinopsis"));
                     txtDirection.setText(dataSerie.getString("Direccion"));

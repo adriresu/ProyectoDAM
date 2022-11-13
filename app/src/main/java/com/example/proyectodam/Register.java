@@ -17,6 +17,11 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         setContentView(R.layout.activity_register);
 
         //Control definitions
@@ -26,7 +31,8 @@ public class Register extends AppCompatActivity {
         EditText txtPassword = (EditText) findViewById(R.id.inputPasswordRegister);
         EditText txtPassword2 = (EditText) findViewById(R.id.inputPassword2Register);
         EditText txtEmail = (EditText) findViewById(R.id.inputEmailRegister);
-        Button btnRegister = (Button) findViewById(R.id.buttonLogin);
+        Button btnRegister = (Button) findViewById(R.id.buttonRegister);
+        Button btnLogin = (Button) findViewById(R.id.buttonLogin);
 
         //Button to register, connect to BBDD
         btnRegister.setOnClickListener(view -> {
@@ -97,6 +103,10 @@ public class Register extends AppCompatActivity {
             }
 
 
+        });
+        btnLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(Register.this, Login.class);
+            startActivity(intent);
         });
     }
 

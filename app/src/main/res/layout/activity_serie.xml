@@ -1,103 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Serie">
-
-    <TextView
-        android:id="@+id/tituloSerieView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Titulo" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:background="@drawable/gradientblackbackground">
 
-        <ImageView
-            android:id="@+id/imageSerie"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tituloSerieView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textSize="35dp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:text="Titulo"
+        />
+
+        <TextView
+            android:id="@+id/averageSerieView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-12"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+        />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageSerie"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:minHeight="30dp"
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtDirector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Director"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/directionSerieView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Director" />
+                android:text="Director"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtGenero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Genero"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/generoSerieView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Genero"
                 android:layout_weight="1"
-                android:text="Genero" />
+                android:textSize="20dp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/anhoEstrenoSerieView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anho Estreno"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+
 
             <TextView
                 android:id="@+id/nombreCharacterView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Anho Estreno"
+                android:textSize="20dp"
                 android:layout_weight="1"
-                android:text="Anho Estreno" />
+                android:textColor="@color/white" />
 
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/peronalidadSerieView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Estado"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
             <TextView
                 android:id="@+id/personalidadCharacterView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Estado" />
+                android:text="Estado"
+                android:textSize="20dp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tipoDeSerie"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Tipo"
+                android:textSize="20dp"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tipoSerieView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Serie/Peli/Anime" />
-
-            <TextView
-                android:id="@+id/averageSerieView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nota media usuarios" />
-
+                android:text="Serie/Peli/Anime"
+                android:textSize="20dp"
+                android:textColor="@color/white" />
         </LinearLayout>
-
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/apellidosCharacterView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Titulo" />
-
-    <TextView
-        android:id="@+id/origenCharacterView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sinopsis" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtSinopsis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25dp"
+            android:text="Sinopsis"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/origenCharacterView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:text="Esta serie trata sobre jajaja aadivina" />
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/listaPersonajes"
         android:layout_width="fill_parent"
-        android:clickable="true"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:clickable="true"
         android:divider="@color/black"
-        android:dividerHeight="2dp"
-        android:listSelector="@color/purple_200" />
+        android:dividerHeight="2dp" />
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
