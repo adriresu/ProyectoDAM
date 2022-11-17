@@ -4,11 +4,15 @@
 
     <item
         android:id="@+id/headerIcon"
-        android:icon="@drawable/ic_baseline_arrow_drop_down_24"
+        android:icon="@drawable/ic_baseline_person_24"
         android:title="header/cabecera"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/headerIconOption1"
         android:title="Opcion1"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/headerIconOption2"
+        android:title="Opcion2"
         app:showAsAction="never" />
 </menu>

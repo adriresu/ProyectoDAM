@@ -38,12 +38,12 @@ public class Register extends AppCompatActivity {
         btnRegister.setOnClickListener(view -> {
             Boolean flag = true;
             String[] errors = new String[10];
-            if (txtName.getText().toString().equals("") || txtName.getText().toString().length() < 6) {
+            if (txtName.getText().toString().equals("") || txtName.getText().toString().length() < 3) {
                 errors[0] = getString(R.string.errorRegister08);
                 flag = false;
                 Toast.makeText(this,errors[0] , Toast.LENGTH_SHORT).show();
             }
-            if (txtSurname.getText().toString().equals("") || txtSurname.getText().toString().length() < 6) {
+            if (txtSurname.getText().toString().equals("") || txtSurname.getText().toString().length() < 3) {
                 errors[0] = getString(R.string.errorRegister09);
                 flag = false;
                 Toast.makeText(this,errors[0] , Toast.LENGTH_SHORT).show();
