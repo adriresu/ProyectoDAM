@@ -79,4 +79,21 @@ public class serieItem {
             this.tipo = "Pelicula";
         }
     }
+
+    public serieItem(int id, Bitmap Imagen, String estado, String genero, String tipo, String titulo){
+        this.id = id;
+        this.caratula = Imagen;
+        this.titulo = titulo;
+        this.genero = genero;
+        this.estado = estado;
+        if (Integer.parseInt(tipo) == 1){
+            this.tipo = "Anime";
+        }
+        else if(Integer.parseInt(tipo) == 2){
+            this.tipo = "Serie";
+        }
+        else{
+            this.tipo = "Pelicula";
+        }
+    }
 }

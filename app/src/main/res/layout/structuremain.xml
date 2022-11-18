@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,8 +17,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="76dp"
-            android:layout_height="56dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:contentDescription="futbol"
             android:scaleType="fitCenter"
             tools:visibility="visible" />
@@ -26,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:divider="@color/material_on_background_emphasis_medium"
+            android:divider="@color/black"
             android:orientation="horizontal">
 
             <TextView
@@ -52,10 +53,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/alfaslaboneregular"
                     android:text="TextView"
                     android:textAlignment="center"
-                    android:textSize="20dp"
                     android:textColor="@color/white"
+                    android:textSize="20dp"
                     android:tooltipText="Apellidos" />
 
                 <TextView
@@ -63,10 +65,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/alfaslaboneregular"
                     android:text="TextView"
                     android:textAlignment="center"
-                    android:textSize="20dp"
                     android:textColor="@color/white"
+                    android:textSize="20dp"
                     android:tooltipText="Edad" />
             </LinearLayout>
 
@@ -83,10 +86,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/alfaslaboneregular"
                     android:text="TextView"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"
                     android:textColor="@color/white"
+                    android:textSize="20dp"
                     android:tooltipText="Años de antiguedad" />
 
                 <TextView
@@ -95,10 +99,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/alfaslaboneregular"
                     android:text="TextView"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"
                     android:textColor="@color/white"
+                    android:textSize="20dp"
                     android:tooltipText="Tantos Anotados" />
             </LinearLayout>
 

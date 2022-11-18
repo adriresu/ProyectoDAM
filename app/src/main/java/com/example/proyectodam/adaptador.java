@@ -2,11 +2,13 @@ package com.example.proyectodam;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.Image;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -26,6 +28,7 @@ public class adaptador extends BaseAdapter {
 
     static class ViewHolder{
         TextView Titulo;
+        ImageView Caratula;
         TextView Genero;
         TextView Estado;
         TextView Tipo;
@@ -40,6 +43,7 @@ public class adaptador extends BaseAdapter {
             view = Inflater.inflate(R.layout.structuremain, null);
             Holder = new ViewHolder();
             Holder.Titulo = (TextView) view.findViewById(R.id.nombreCharacterView);
+            Holder.Caratula = (ImageView) view.findViewById(R.id.imageView);
             Holder.Genero = (TextView) view.findViewById(R.id.personalidadCharacterView);
             Holder.Estado = (TextView) view.findViewById(R.id.apellidosCharacterView);
             Holder.Tipo = (TextView) view.findViewById(R.id.origenCharacterView);
@@ -52,6 +56,7 @@ public class adaptador extends BaseAdapter {
 
         serieItem serie = listaSeries.get(position);
         Holder.Titulo.setText(serie.getTitulo());
+        Holder.Caratula.setImageBitmap(serie.getImagen());
         Holder.Genero.setText(serie.getGenero());
         Holder.Estado.setText(String.valueOf(serie.getEstado()));
         Holder.Tipo.setText(String.valueOf(serie.getTipo()));

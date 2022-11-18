@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -59,7 +60,7 @@ public class mainMenu extends AppCompatActivity {
                     String caratulaSerie = dataSerie.getString("Caratula");
                     String tipoSerie = dataSerie.getString("Tipo");
                     String tituloSerie = dataSerie.getString("Titulo");
-                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), estadoSerie, generoSerie, tipoSerie, tituloSerie);
+                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), BitmapFactory.decodeResource(this.getApplicationContext().getResources(), R.drawable.op), estadoSerie, generoSerie, tipoSerie, tituloSerie);
                     listaSeries.add(serieTemp);
                 }
             }
