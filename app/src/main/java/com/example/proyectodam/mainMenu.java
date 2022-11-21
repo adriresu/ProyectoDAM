@@ -1,10 +1,12 @@
 package com.example.proyectodam;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -23,11 +25,11 @@ import java.util.List;
 public class mainMenu extends AppCompatActivity {
 
     public static ArrayList<serieItem> listaSeries = new ArrayList<serieItem>();
-    ListView listview;
 
     //Loggin Info
     String name;
     String password;
+    int defaultType = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,9 @@ public class mainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("SERIES");
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
         name = getIntent().getStringExtra("user");
         password = getIntent().getStringExtra("password");
     }
@@ -45,22 +49,21 @@ public class mainMenu extends AppCompatActivity {
         super.onStart();
         ListView listView = (ListView)findViewById(R.id.customListaSeries);
         listaSeries.clear();
+        JSONArray array;
+        JSONArray jsonArray;
         try {
-            JSONArray array =  makeRequest();
-            JSONArray jsonArray = (JSONArray)array;
+            array = makeRequest(defaultType);
+            jsonArray = (JSONArray)array;
             if (jsonArray != null) {
                 int len = jsonArray.length();
                 for (int i=0;i<len;i++){
-
                     JSONObject dataSerie = (JSONObject) jsonArray.get(i);
-
                     String idSerie = dataSerie.getString("ID");
                     String estadoSerie = dataSerie.getString("Estado");
-                    String generoSerie = dataSerie.getString("Genero");
                     String caratulaSerie = dataSerie.getString("Caratula");
                     String tipoSerie = dataSerie.getString("Tipo");
                     String tituloSerie = dataSerie.getString("Titulo");
-                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), BitmapFactory.decodeResource(this.getApplicationContext().getResources(), R.drawable.op), estadoSerie, generoSerie, tipoSerie, tituloSerie);
+                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), BitmapFactory.decodeResource(this.getApplicationContext().getResources(), R.drawable.op), estadoSerie, tipoSerie, tituloSerie);
                     listaSeries.add(serieTemp);
                 }
             }
@@ -70,6 +73,7 @@ public class mainMenu extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         adaptador adaptador = new adaptador(this, listaSeries);
         listView.setAdapter(adaptador);
@@ -94,18 +98,83 @@ public class mainMenu extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int typeMedia = -1;
+        ListView listView = (ListView)findViewById(R.id.customListaSeries);
         switch (item.getItemId()){
+            case R.id.headerIcon:
+                Intent intent = new Intent(mainMenu.this, Profile.class);
+                intent.putExtra("user", name);
+                intent.putExtra("password", password);
+                startActivity(intent);
+                break;
             case R.id.headerIconOption1:
-                Toast.makeText(mainMenu.this, "Opcion 1 pulsado", Toast.LENGTH_SHORT).show();
-                return true;
+                typeMedia = 0;
+                getSupportActionBar().setTitle("SERIES");
+                break;
+            case R.id.headerIconOption2:
+                typeMedia = 1;
+                getSupportActionBar().setTitle("FILMS");
+                break;
+            case R.id.headerIconOption3:
+                typeMedia = 2;
+                getSupportActionBar().setTitle("ANIMES");
+                break;
             default:
-                return super.onOptionsItemSelected(item);
+                throw new IllegalStateException("Unexpected value: " + item.getItemId());
         }
+
+        listaSeries.clear();
+        JSONArray array;
+        JSONArray jsonArray;
+        try {
+            array = makeRequest(typeMedia);
+            jsonArray = (JSONArray)array;
+            if (jsonArray != null) {
+                int len = jsonArray.length();
+                for (int i=0;i<len;i++){
+                    JSONObject dataSerie = (JSONObject) jsonArray.get(i);
+                    String idSerie = dataSerie.getString("ID");
+                    String estadoSerie = dataSerie.getString("Estado");
+                    String caratulaSerie = dataSerie.getString("Caratula");
+                    String tipoSerie = dataSerie.getString("Tipo");
+                    String tituloSerie = dataSerie.getString("Titulo");
+                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), BitmapFactory.decodeResource(this.getApplicationContext().getResources(), R.drawable.op), estadoSerie, tipoSerie, tituloSerie);
+                    listaSeries.add(serieTemp);
+                }
+            }
+            else{
+                Toast.makeText(this, "Any media in the BBDD", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            adaptador adaptador = new adaptador(this, listaSeries);
+            listView.setAdapter(adaptador);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(mainMenu.this, Serie.class);
+                    intent.putExtra("user", name);
+                    intent.putExtra("password", password);
+                    intent.putExtra("IDserie", Integer.toString(listaSeries.get(position).getID()));
+                    startActivity(intent);
+                }
+            });
+        return true;
     }
 
-    private JSONArray makeRequest() throws Exception {
+    private JSONArray makeRequest(int Tipo) throws Exception {
         MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
-        multipartRequest.addFormField("Tipo", "Series");
+        if (Tipo == 0){
+            multipartRequest.addFormField("Tipo", "Series");
+        }
+        else if(Tipo == 1){
+            multipartRequest.addFormField("Tipo", "Peliculas");
+        }
+        else if(Tipo == 2){
+            multipartRequest.addFormField("Tipo", "Animes");
+        }
+
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
         JSONArray json = new JSONArray(response.get(0));

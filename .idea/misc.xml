@@ -7,21 +7,31 @@
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/debug/res/font/acme.xml" value="0.484375" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/debug/res/font/akaya_telivigala.xml" value="0.484375" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/debug/res/font/alfa_slab_one.xml" value="0.484375" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/debug/res/mipmap-anydpi-v26/iconimage.xml" value="0.399" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/debug/res/mipmap-anydpi-v26/iconimage_round.xml" value="0.3715" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable-v24/gradientcabeceragold.xml" value="0.2865" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable-v24/ic_baseline_arrow_drop_down_24.xml" value="0.4185" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4" />
-        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/gradient.xml" value="0.3715" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/buttonstyle.xml" value="0.2865" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/gradient.xml" value="0.22" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/gradient2.xml" value="0.3605" />
-        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/gradientcabecera.xml" value="0.3715" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/gradientcabecera.xml" value="0.22" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.2865" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/ic_baseline_mail_24.xml" value="0.2865" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3715" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/ic_launcher_background.xml" value="0.4" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/passwordkey.xml" value="0.3715" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/roundededittext.xml" value="0.2865" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/roundedgradientprofile.xml" value="0.2865" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/drawable/transparentgreen.xml" value="0.2955" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/font/alegreya_black.xml" value="0.4796875" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/font/baloo_bhai_2_extrabold.xml" value="0.4375" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_admin.xml" value="0.5546875" />
-        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_character.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_character.xml" value="0.28314457028647566" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_custom_main_menu_list_view.xml" value="0.3885416666666667" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_login.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_main_menu.xml" value="0.22" />
-        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_profile.xml" value="0.5" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_profile.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_register.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/activity_serie.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/layout/list_view_admin.xml" value="0.43342391304347827" />
@@ -32,6 +42,8 @@
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/menu/header1.xml" value="0.5546875" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3715" />
         <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3715" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/mipmap-anydpi-v26/ic_launcher_wathclist.xml" value="0.399" />
+        <entry key="..\:/Users/resua/AndroidStudioProjects/ProyectoDAM/app/src/main/res/mipmap-anydpi-v26/ic_launcher_wathclist_round.xml" value="0.399" />
       </map>
     </option>
   </component>

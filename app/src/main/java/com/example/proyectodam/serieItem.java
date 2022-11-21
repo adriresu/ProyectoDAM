@@ -53,13 +53,13 @@ public class serieItem {
         this.titulo = titulo;
         this.genero = genero;
         this.estado = estado;
-        if (Integer.parseInt(tipo) == 1){
+        if (Integer.parseInt(tipo) == 2){
             this.tipo = "Anime";
         }
-        else if(Integer.parseInt(tipo) == 2){
+        else if(Integer.parseInt(tipo) == 0){
             this.tipo = "Serie";
         }
-        else{
+        else if (Integer.parseInt(tipo) == 1){
             this.tipo = "Pelicula";
         }
     }
@@ -69,30 +69,30 @@ public class serieItem {
         this.titulo = titulo;
         this.genero = genero;
         this.estado = estado;
-        if (Integer.parseInt(tipo) == 1){
+        if (Integer.parseInt(tipo) == 2){
             this.tipo = "Anime";
         }
-        else if(Integer.parseInt(tipo) == 2){
+        else if(Integer.parseInt(tipo) == 0){
             this.tipo = "Serie";
         }
-        else{
+        else if (Integer.parseInt(tipo) == 1){
             this.tipo = "Pelicula";
         }
     }
 
-    public serieItem(int id, Bitmap Imagen, String estado, String genero, String tipo, String titulo){
+    public serieItem(int id, Bitmap Imagen, String estado, String tipo, String titulo){
         this.id = id;
         this.caratula = Imagen;
         this.titulo = titulo;
         this.genero = genero;
         this.estado = estado;
-        if (Integer.parseInt(tipo) == 1){
+        if (Integer.parseInt(tipo) == 2){
             this.tipo = "Anime";
         }
-        else if(Integer.parseInt(tipo) == 2){
+        else if(Integer.parseInt(tipo) == 0){
             this.tipo = "Serie";
         }
-        else{
+        else if (Integer.parseInt(tipo) == 1){
             this.tipo = "Pelicula";
         }
     }

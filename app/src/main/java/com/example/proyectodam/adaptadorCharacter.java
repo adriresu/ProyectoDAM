@@ -47,13 +47,13 @@ public class adaptadorCharacter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder Holder = null;
         if(view == null){
-            view = Inflater.inflate(R.layout.structuremain, null);
+            view = Inflater.inflate(R.layout.structurecharacters, null);
             Holder = new ViewHolder();
             Holder.nombre = (TextView) view.findViewById(R.id.nombreCharacterView);
             Holder.apellidos = (TextView) view.findViewById(R.id.apellidosCharacterView);
             Holder.personalidad = (TextView) view.findViewById(R.id.personalidadCharacterView);
             Holder.origen = (TextView) view.findViewById(R.id.origenCharacterView);
-            Holder.imagen = (ImageView) view.findViewById(R.id.imageView);
+            Holder.imagen = (ImageView) view.findViewById(R.id.avatar);
             view.setTag(Holder);
         }
         else{

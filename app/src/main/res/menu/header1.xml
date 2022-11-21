@@ -9,10 +9,14 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/headerIconOption1"
-        android:title="Opcion1"
+        android:title="SERIES"
         app:showAsAction="never" />
     <item
         android:id="@+id/headerIconOption2"
-        android:title="Opcion2"
+        android:title="FILMS"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/headerIconOption3"
+        android:title="ANIMES"
         app:showAsAction="never" />
 </menu>
