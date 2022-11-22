@@ -18,7 +18,7 @@
         tools:targetApi="31">
         <activity
             android:name=".Register"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".Admin"
             android:exported="false" />
@@ -31,7 +31,8 @@
         </activity>
         <activity
             android:name=".Character"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".mainMenu"
             android:exported="true" >

@@ -45,7 +45,7 @@ public class Serie extends AppCompatActivity {
         TextView txtEstado = (TextView) findViewById(R.id.personalidadCharacterView);
         TextView txtTipo = (TextView) findViewById(R.id.tipoSerieView);
         TextView txtMediaNota = (TextView) findViewById(R.id.averageSerieView);
-        TextView txtSinopsis = (TextView) findViewById(R.id.origenCharacterView);
+        TextView txtSinopsis = (TextView) findViewById(R.id.nombreCharacterView);
         TextView txtDirection = (TextView) findViewById(R.id.directionSerieView);
         ImageView imageSerie = (ImageView) findViewById(R.id.imageSerie);
 

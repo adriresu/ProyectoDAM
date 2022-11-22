@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/avatar"
+            android:id="@+id/caratula"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="5dp"
             android:contentDescription="futbol"
-            android:cropToPadding="false"
             android:scaleType="fitCenter"
+            app:srcCompat="@drawable/notfound"
             tools:visibility="visible" />
 
         <LinearLayout
@@ -30,9 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:divider="@color/black"
-
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/idSerieView"
                 android:layout_width="wrap_content"
@@ -53,7 +51,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/nombreCharacterView"
+                    android:id="@+id/tittleSerie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -67,7 +65,7 @@
                     android:textAllCaps="true"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    android:tooltipText="Apellidos" />
+                    android:tooltipText="Tittle" />
 
             </LinearLayout>
 
@@ -80,7 +78,7 @@
                 android:textAlignment="textEnd">
 
                 <TextView
-                    android:id="@+id/origenCharacterView"
+                    android:id="@+id/stateSerie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -90,10 +88,10 @@
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textSize="20dp"
-                    android:tooltipText="Tantos Anotados" />
+                    android:tooltipText="Type" />
 
                 <TextView
-                    android:id="@+id/apellidosCharacterView"
+                    android:id="@+id/typeSerie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -103,7 +101,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textSize="20dp"
-                    android:tooltipText="Años de antiguedad" />
+                    android:tooltipText="Gender" />
             </LinearLayout>
 
         </LinearLayout>

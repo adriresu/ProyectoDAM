@@ -63,7 +63,6 @@ public class adaptadorCharacter extends BaseAdapter {
         characterItem character = listaCharacters.get(position);
         Holder.nombre.setText(character.getNombre());
         Holder.apellidos.setText(character.getApellidos());
-        Holder.personalidad.setText(String.valueOf(character.getPersonalidad()));
         Holder.origen.setText(String.valueOf(character.getOrigen()));
 
         return view;

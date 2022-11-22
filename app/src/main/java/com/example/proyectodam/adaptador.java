@@ -40,10 +40,10 @@ public class adaptador extends BaseAdapter {
         if(view == null){
             view = Inflater.inflate(R.layout.structuremain, null);
             Holder = new ViewHolder();
-            Holder.Titulo = (TextView) view.findViewById(R.id.nombreCharacterView);
-            Holder.Caratula = (ImageView) view.findViewById(R.id.avatar);
-            Holder.Estado = (TextView) view.findViewById(R.id.apellidosCharacterView);
-            Holder.Tipo = (TextView) view.findViewById(R.id.origenCharacterView);
+            Holder.Titulo = (TextView) view.findViewById(R.id.tittleSerie);
+            Holder.Caratula = (ImageView) view.findViewById(R.id.caratula);
+            Holder.Estado = (TextView) view.findViewById(R.id.stateSerie);
+            Holder.Tipo = (TextView) view.findViewById(R.id.typeSerie);
             Holder.ID = (TextView) view.findViewById(R.id.idSerieView);
             view.setTag(Holder);
         }
