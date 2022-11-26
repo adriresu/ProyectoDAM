@@ -29,6 +29,7 @@ public class mainMenu extends AppCompatActivity {
     //Loggin Info
     String name;
     String password;
+    String idUser;
     int defaultType = 0;
 
     @Override
@@ -42,6 +43,7 @@ public class mainMenu extends AppCompatActivity {
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
         name = getIntent().getStringExtra("user");
         password = getIntent().getStringExtra("password");
+        idUser = getIntent().getStringExtra("IDuser");
     }
 
     @Override
@@ -84,6 +86,7 @@ public class mainMenu extends AppCompatActivity {
                 intent.putExtra("user", name);
                 intent.putExtra("password", password);
                 intent.putExtra("IDserie", Integer.toString(listaSeries.get(position).getID()));
+                intent.putExtra("IDuser", idUser);
                 startActivity(intent);
             }
         });
@@ -105,6 +108,7 @@ public class mainMenu extends AppCompatActivity {
                 Intent intent = new Intent(mainMenu.this, Profile.class);
                 intent.putExtra("user", name);
                 intent.putExtra("password", password);
+                intent.putExtra("IDuser", idUser);
                 startActivity(intent);
                 break;
             case R.id.headerIconOption1:
@@ -157,6 +161,7 @@ public class mainMenu extends AppCompatActivity {
                     intent.putExtra("user", name);
                     intent.putExtra("password", password);
                     intent.putExtra("IDserie", Integer.toString(listaSeries.get(position).getID()));
+                    intent.putExtra("IDuser", idUser);
                     startActivity(intent);
                 }
             });

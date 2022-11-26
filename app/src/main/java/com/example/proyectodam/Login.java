@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -54,11 +55,16 @@ public class Login extends AppCompatActivity {
 
             if (flag) { //Proceed to Login on BBDD (WS)
                 try {
-                    String respuesta = makeRequest(txtUsername.getText().toString(), txtPassword.getText().toString());
-                    if (respuesta.equals("True")){
+                    JSONArray array = makeRequest(txtUsername.getText().toString(), txtPassword.getText().toString());
+                    JSONArray jsonArrayCharacter = (JSONArray)array;
+
+                    if (array != null) {
+                        JSONObject dataUser = (JSONObject) jsonArrayCharacter.get(0);
+                        String id = dataUser.getString("ID");
                         Intent intent = new Intent(Login.this, mainMenu.class);
                         intent.putExtra("user", txtUsername.getText().toString());
                         intent.putExtra("password", txtPassword.getText().toString());
+                        intent.putExtra("IDuser", id);
                         startActivity(intent);
                     }
                     else{
@@ -78,16 +84,15 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private String makeRequest(String username, String password) throws Exception {
+    private JSONArray makeRequest(String username, String password) throws Exception {
         MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
         multipartRequest.addFormField("Tipo", "Login");
         multipartRequest.addFormField("username", username);
         multipartRequest.addFormField("password", password);
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
-        JSONObject json = new JSONObject(response.get(0));
-        return json.getString("response");
+        JSONArray json = new JSONArray(response.get(0));
+        return json;
     }
-
 
 };

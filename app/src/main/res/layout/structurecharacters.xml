@@ -31,12 +31,12 @@
             android:layout_marginRight="10dp"
             android:divider="@color/black"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/idSerieView"
+                android:id="@+id/idCharacterView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView"
                 android:textAlignment="center"
                 android:textSize="20dp"
                 android:tooltipText="Apellidos"

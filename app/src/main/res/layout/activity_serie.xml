@@ -42,28 +42,50 @@
                     android:id="@+id/averageSerieView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="12dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
+                    android:background="@drawable/notecircle"
+                    android:padding="12dp"
                     android:text="12"
                     android:textColor="@color/white"
                     android:textSize="30dp"
-                    android:background="@drawable/notecircle"
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageSerie"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:maxWidth="270dp"
-                android:maxHeight="270dp"
-                android:minWidth="200dp"
-                android:minHeight="200dp"
-                app:srcCompat="@drawable/notfound" />
+                android:layout_weight="1"
+                android:background="@drawable/gradientcabecera">
+
+                <ImageView
+                    android:id="@+id/imageSerie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:maxWidth="270dp"
+                    android:maxHeight="270dp"
+                    android:minWidth="200dp"
+                    android:minHeight="200dp"
+                    app:srcCompat="@drawable/notfound" />
+
+                <ImageView
+                    android:id="@+id/viewed"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:maxWidth="270dp"
+                    android:maxHeight="270dp"
+                    android:minWidth="200dp"
+                    android:minHeight="200dp"
+                    app:srcCompat="@drawable/eyewatch" />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -354,19 +376,21 @@
                     android:textSize="22dp" />
             </LinearLayout>
 
-
             <ListView
                 android:id="@+id/listaPersonajes"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:divider="@color/black"
-                android:layout_marginTop="20dp"
+                android:layout_height="400dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginBottom="10dp"
-                android:dividerHeight="2dp" />
+                android:clickable="true"
+                android:divider="@color/black"
+                android:dividerHeight="2dp"
+                android:headerDividersEnabled="false" />
+
 
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

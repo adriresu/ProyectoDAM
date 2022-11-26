@@ -3,7 +3,10 @@ package com.example.proyectodam;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -23,6 +26,9 @@ public class Serie extends AppCompatActivity {
     ListView listview;
     String user;
     String password;
+    String idUser;
+    Boolean viewed = false;
+    Boolean exists = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +37,17 @@ public class Serie extends AppCompatActivity {
 
         user = getIntent().getStringExtra("user");
         password = getIntent().getStringExtra("password");
+        idUser = getIntent().getStringExtra("IDuser");
     }
     @Override
     public void onStart(){
         super.onStart();
         ListView listView = (ListView)findViewById(R.id.listaPersonajes);
         listaCharacter.clear();
+
+        JSONArray array;
+        JSONArray jsonArray;
+
         String idSerie = getIntent().getStringExtra("IDserie");
         //Control data
         TextView txtTittle = (TextView) findViewById(R.id.tituloSerieView);
@@ -48,13 +59,35 @@ public class Serie extends AppCompatActivity {
         TextView txtSinopsis = (TextView) findViewById(R.id.nombreCharacterView);
         TextView txtDirection = (TextView) findViewById(R.id.directionSerieView);
         ImageView imageSerie = (ImageView) findViewById(R.id.imageSerie);
+        ImageView imageViewed = (ImageView) findViewById(R.id.viewed);
+
+        imageViewed.setOnClickListener(view -> {
+            try {
+                int viewedSerie = 0;
+                if (viewed == true){
+                    viewedSerie = 0;
+                    imageViewed.setImageResource(R.drawable.eyewatch);
+                    viewed = false;
+                }
+                else{
+                    viewedSerie = 1;
+                    imageViewed.setImageResource(R.drawable.viewed);
+                    viewed = true;
+                }
+                String respuesta = makeRequestViewed(idSerie, idUser, viewedSerie);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         try {
-            JSONArray array = makeRequest(idSerie);
-            if (array != null) {
-                int len = array.length();
+            array = makeRequest(idSerie);
+            jsonArray = (JSONArray)array;
+            if (jsonArray != null) {
+                int len = jsonArray.length();
                 for (int i=0;i<len;i++){
-                    JSONObject dataSerie = (JSONObject) array.get(i);
+                    JSONObject dataSerie = (JSONObject) jsonArray.get(i);
 
                     if (Integer.parseInt(dataSerie.getString("Tipo")) == 1){
                         txtTipo.setText("Anime");
@@ -82,7 +115,6 @@ public class Serie extends AppCompatActivity {
                     if (jsonArrayCharacter != null) {
                         int lenCharacter = jsonArrayCharacter.length();
                         for (int i=0;i<lenCharacter;i++){
-
                             JSONObject dataCharacter = (JSONObject) jsonArrayCharacter.get(i);
 
                             String idCharacter = dataCharacter.getString("ID");
@@ -94,12 +126,40 @@ public class Serie extends AppCompatActivity {
                             String personalidadCharacter = dataCharacter.getString("Personalidad");
                             String origenCharacter = dataCharacter.getString("Origen");
                             String descripcionCharacter = dataCharacter.getString("Descripcion");
-                            characterItem characterTemp = new characterItem(Integer.parseInt(idCharacter), nombreCharacter, apellidosCharacter, Integer.parseInt(edadCharacter), poderCharacter, actorCharacter, personalidadCharacter, origenCharacter, descripcionCharacter);
+                            String Preimagen = dataCharacter.getString("Imagen");
+                            byte [] encodeByte = Base64.decode(Preimagen, Base64.DEFAULT);
+                            Bitmap Imagen = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+                            characterItem characterTemp = new characterItem(Imagen, Integer.parseInt(idCharacter), nombreCharacter, apellidosCharacter, Integer.parseInt(edadCharacter), poderCharacter, actorCharacter, personalidadCharacter, origenCharacter, descripcionCharacter);
                             listaCharacter.add(characterTemp);
                         }
                     }
                     else{
                         Toast.makeText(this, "Any media in the BBDD", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    JSONArray arrayExtraSerieInfo =  makeRequestextraSerieInfo(idSerie, idUser);
+                    JSONArray jsonarrayExtraSerieInfo = (JSONArray)arrayExtraSerieInfo;
+                    if (jsonarrayExtraSerieInfo != null) {
+                        exists = true;
+                        int lenExtraSerieInfo = jsonarrayExtraSerieInfo.length();
+                        JSONObject extraInfo = (JSONObject) jsonarrayExtraSerieInfo.get(0);
+                        String estadoSerie = extraInfo.getString("Estado");
+                        if (Integer.parseInt(estadoSerie) == 1){
+                            viewed = true;
+                            imageViewed.setImageResource(R.drawable.viewed);
+                        }
+                        else{
+                            viewed = false;
+                            imageViewed.setImageResource(R.drawable.eyewatch);
+                        }
+                        String votacionSerie = extraInfo.getString("Votacion");
+                        String notaSerie = extraInfo.getString("Notas");
+                    }
+                    else{
+                        exists = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -121,6 +181,7 @@ public class Serie extends AppCompatActivity {
                 intent.putExtra("user", user);
                 intent.putExtra("password", password);
                 intent.putExtra("id", Integer.toString(listaCharacter.get(position).getID()));
+                intent.putExtra("IDuser", idUser);
                 startActivity(intent);
             }
         });
@@ -147,4 +208,29 @@ public class Serie extends AppCompatActivity {
         JSONArray json = new JSONArray(response.get(0));
         return json;
     };
+
+    private JSONArray makeRequestextraSerieInfo(String idSerie, String idUser) throws Exception {
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        multipartRequest.addFormField("Tipo", "SerieExtraInfo");
+        multipartRequest.addFormField("id", idSerie);
+        multipartRequest.addFormField("idUser", idUser);
+        multipartRequest.addFormField("End", "End");
+        List<String> response = multipartRequest.finish();
+        JSONArray json = new JSONArray(response.get(0));
+        return json;
+    };
+
+    private String makeRequestViewed(String idSerie, String idUser, int viewed) throws Exception {
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        multipartRequest.addFormField("Tipo", "serieViewed");
+        multipartRequest.addFormField("id", idSerie);
+        multipartRequest.addFormField("idUser", idUser);
+        multipartRequest.addFormField("viewed", String.valueOf(viewed));
+        multipartRequest.addFormField("End", "End");
+        List<String> response = multipartRequest.finish();
+        JSONObject json = new JSONObject(response.get(0));
+        return json.getString("response");
+    };
+
+
 }

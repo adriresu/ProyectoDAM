@@ -79,7 +79,8 @@ public class characterItem {
     }
     //#endregion
 
-    public characterItem(int id, String nombre, String apellidos, int edad, String poder, String actor, String personalidad, String origen, String descripcion, int idSerie){
+    public characterItem(Bitmap imagen, int id, String nombre, String apellidos, int edad, String poder, String actor, String personalidad, String origen, String descripcion, int idSerie){
+        this.imagen = imagen;
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -91,7 +92,8 @@ public class characterItem {
         this.descripcion = descripcion;
         this.idSerie = idSerie;
     }
-    public characterItem(int id, String nombreCharacter, String apellidosCharacter, int edad, String poderCharacter, String actorCharacter, String personalidadCharacter, String origenCharacter, String descripcionCharacter) {
+    public characterItem(Bitmap imagen, int id, String nombreCharacter, String apellidosCharacter, int edad, String poderCharacter, String actorCharacter, String personalidadCharacter, String origenCharacter, String descripcionCharacter) {
+        this.imagen = imagen;
         this.id = id;
         this.nombre = nombreCharacter;
         this.apellidos = apellidosCharacter;

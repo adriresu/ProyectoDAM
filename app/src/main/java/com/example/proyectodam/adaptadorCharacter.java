@@ -20,14 +20,6 @@ public class adaptadorCharacter extends BaseAdapter {
     private ArrayList<characterItem> listaCharacters;
     private LayoutInflater Inflater;
 
-
-    private int id;
-    private Bitmap imagen;
-    private String nombre;
-    private String apellidos;
-    private String personalidad;
-    private String origen;
-
     public adaptadorCharacter(Activity Context, ArrayList<characterItem> listaCharacters) {
         this.Context = Context;
         this.listaCharacters = listaCharacters;
@@ -40,6 +32,7 @@ public class adaptadorCharacter extends BaseAdapter {
         TextView personalidad;
         TextView origen;
         ImageView imagen;
+        TextView ID;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -51,9 +44,9 @@ public class adaptadorCharacter extends BaseAdapter {
             Holder = new ViewHolder();
             Holder.nombre = (TextView) view.findViewById(R.id.nombreCharacterView);
             Holder.apellidos = (TextView) view.findViewById(R.id.apellidosCharacterView);
-            Holder.personalidad = (TextView) view.findViewById(R.id.personalidadCharacterView);
             Holder.origen = (TextView) view.findViewById(R.id.origenCharacterView);
             Holder.imagen = (ImageView) view.findViewById(R.id.avatar);
+            Holder.ID = (TextView) view.findViewById(R.id.idCharacterView);
             view.setTag(Holder);
         }
         else{
@@ -64,7 +57,7 @@ public class adaptadorCharacter extends BaseAdapter {
         Holder.nombre.setText(character.getNombre());
         Holder.apellidos.setText(character.getApellidos());
         Holder.origen.setText(String.valueOf(character.getOrigen()));
-
+        Holder.ID.setText(String.valueOf(character.getID()));
         return view;
     }
 
