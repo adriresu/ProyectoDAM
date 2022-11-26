@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ProyectoDAM</string>
-    <string name="name">Name</string>
+    <string name="name">Nombre</string>
     <string name="login_name">Username</string>
-    <string name="login_password">Password</string>
+    <string name="login_password">Contraseña</string>
     <string name="login_email">Email</string>
     <string name="login_telf">Phone</string>
-    <string name="login_password2">Repeat Password</string>
+    <string name="login_password2">Repita la Contraseña</string>
     <string name="character_age">Age</string>
 
     <string name="errorRegister01">Username must have more than 3 characters</string>

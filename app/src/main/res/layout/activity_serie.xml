@@ -230,7 +230,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/nombreCharacterView"
+                            android:id="@+id/anhoCharacterView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -364,22 +364,22 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/nombreCharacterView"
+                    android:id="@+id/synopsisCharacterView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Esta serie trata sobre jajaja aadivina"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/baloo_bhai_2_extrabold"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/baloo_bhai_2_extrabold"
+                    android:text="Synopsis not found. Contact with administrator to add a Synopsis"
+                    android:textColor="@color/white"
                     android:textSize="22dp" />
             </LinearLayout>
 
             <ListView
                 android:id="@+id/listaPersonajes"
                 android:layout_width="fill_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="12dp"

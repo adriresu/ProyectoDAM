@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -56,6 +57,11 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){};
         setContentView(R.layout.activity_profile);
         name = getIntent().getStringExtra("user");
         password = getIntent().getStringExtra("password");
@@ -67,6 +73,12 @@ public class Profile extends AppCompatActivity {
 
         //Declaramos el boton para el avatar
         ImageView botonAvatar = (ImageView) findViewById(R.id.avatar);
+        Button btnSave = (Button) findViewById(R.id.btnSave);
+
+        //On click save
+        btnSave.setOnClickListener(view -> {
+
+        });
 
         //On click select image
         botonAvatar.setOnClickListener(

@@ -33,6 +33,11 @@ public class Serie extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         setContentView(R.layout.activity_serie);
 
         user = getIntent().getStringExtra("user");
@@ -52,11 +57,11 @@ public class Serie extends AppCompatActivity {
         //Control data
         TextView txtTittle = (TextView) findViewById(R.id.tituloSerieView);
         TextView txtGenero = (TextView) findViewById(R.id.generoSerieView);
-        TextView txtAnhoEstreno = (TextView) findViewById(R.id.nombreCharacterView);
+        TextView txtAnhoEstreno = (TextView) findViewById(R.id.anhoCharacterView);
         TextView txtEstado = (TextView) findViewById(R.id.personalidadCharacterView);
         TextView txtTipo = (TextView) findViewById(R.id.tipoSerieView);
         TextView txtMediaNota = (TextView) findViewById(R.id.averageSerieView);
-        TextView txtSinopsis = (TextView) findViewById(R.id.nombreCharacterView);
+        TextView txtSinopsis = (TextView) findViewById(R.id.synopsisCharacterView);
         TextView txtDirection = (TextView) findViewById(R.id.directionSerieView);
         ImageView imageSerie = (ImageView) findViewById(R.id.imageSerie);
         ImageView imageViewed = (ImageView) findViewById(R.id.viewed);
@@ -90,13 +95,13 @@ public class Serie extends AppCompatActivity {
                     JSONObject dataSerie = (JSONObject) jsonArray.get(i);
 
                     if (Integer.parseInt(dataSerie.getString("Tipo")) == 1){
-                        txtTipo.setText("Anime");
+                        txtTipo.setText("Film");
                     }
                     else if(Integer.parseInt(dataSerie.getString("Tipo")) == 2){
-                        txtTipo.setText("Serie");
+                        txtTipo.setText("Anime");
                     }
                     else{
-                        txtTipo.setText("Pelicula");
+                        txtTipo.setText("Serie");
                     }
 
                     txtTittle.setText(dataSerie.getString("Titulo"));

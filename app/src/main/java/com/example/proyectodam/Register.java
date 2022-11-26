@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -39,61 +40,70 @@ public class Register extends AppCompatActivity {
             Boolean flag = true;
             String[] errors = new String[10];
             if (txtName.getText().toString().equals("") || txtName.getText().toString().length() < 3) {
-                errors[0] = getString(R.string.errorRegister08);
+                txtName.setError(getString(R.string.errorRegister08));
                 flag = false;
-                Toast.makeText(this,errors[0] , Toast.LENGTH_SHORT).show();
             }
             if (txtSurname.getText().toString().equals("") || txtSurname.getText().toString().length() < 3) {
-                errors[0] = getString(R.string.errorRegister09);
+                txtSurname.setError(getString(R.string.errorRegister09));
                 flag = false;
-                Toast.makeText(this,errors[0] , Toast.LENGTH_SHORT).show();
             }
-            if (txtUsername.getText().toString().equals("") || txtUsername.getText().toString().length() < 6) {
-                errors[0] = getString(R.string.errorRegister01);
+            if (txtUsername.getText().toString().equals("") || txtUsername.getText().toString().length() < 4) {
+                txtUsername.setError(getString(R.string.errorRegister01));
                 flag = false;
-                Toast.makeText(this,errors[0] , Toast.LENGTH_SHORT).show();
             }
-            if (txtPassword.getText().toString().isEmpty() && !txtPassword2.getText().toString().isEmpty()){
-                errors[1] = getString(R.string.errorRegister02);
+            else{
+                try {
+                    JSONArray array = makeRequestCheck(txtUsername.getText().toString());
+
+                    if (array != null) {
+                        txtUsername.setError(getString(R.string.errorRegister10));
+                        flag = false;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+            if (txtPassword.getText().toString().isEmpty()){
+                txtPassword.setError(getString(R.string.errorRegister02));
                 flag = false;
-                Toast.makeText(this,errors[0] , Toast.LENGTH_SHORT).show();
+                if (!txtPassword2.getText().toString().isEmpty()){
+                    txtPassword2.setError(getString(R.string.errorRegister02));
+                }
             }
             if (txtPassword.getText().toString().length() < 8){
-                errors[1] = getString(R.string.errorRegister02);
+                txtPassword.setError(getString(R.string.errorRegister05));
                 flag = false;
-                Toast.makeText(this,errors[0] , Toast.LENGTH_SHORT).show();
             }
             if (!(txtPassword.getText().toString()).equals(txtPassword2.getText().toString())){
-                errors[2] = getString(R.string.errorRegister05);
+                txtPassword2.setError(getString(R.string.errorRegister03));
                 flag = false;
-                Toast.makeText(this,errors[1] , Toast.LENGTH_SHORT).show();
             }
             if (txtEmail.getText().toString().isEmpty()) {
-                errors[0] = getString(R.string.errorRegister07);
+                txtEmail.setError(getString(R.string.errorRegister07));
                 flag = false;
-                Toast.makeText(this,errors[0] , Toast.LENGTH_SHORT).show();
             }
             //Regex match
             String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
             if (!(txtEmail.getText().toString().matches(emailPattern))) {
-                errors[2] = getString(R.string.errorRegister06);
+                txtEmail.setError(getString(R.string.errorRegister06));
                 flag = false;
-                Toast.makeText(this,errors[6] , Toast.LENGTH_SHORT).show();
             }
+
 
             if (flag){ //Proceed to register on BBDD (WS)
                 try {
-                    String respuesta = makeRequest(txtName.getText().toString(), txtSurname.getText().toString(), txtUsername.getText().toString(), txtPassword.getText().toString(), txtEmail.getText().toString());
-                    if (respuesta.equals("True")){
-                        Toast.makeText(this, "Se ha creado correctamente el usuario", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Register.this, mainMenu.class);
-                        intent.putExtra("user", txtUsername.getText().toString());
-                        intent.putExtra("password", txtPassword.getText().toString());
-                        startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(this, "Please fill all the fields correctly", Toast.LENGTH_SHORT).show();
-                    }
+                    JSONArray array = makeRequest(txtName.getText().toString(), txtSurname.getText().toString(), txtUsername.getText().toString(), txtPassword.getText().toString(), txtEmail.getText().toString());
+                    JSONArray jsonArrayCharacter = (JSONArray)array;
+
+                    Toast.makeText(this, "Se ha creado correctamente el usuario", Toast.LENGTH_SHORT).show();
+                    JSONObject dataUser = (JSONObject) jsonArrayCharacter.get(0);
+                    String id = dataUser.getString("ID");
+                    Intent intent = new Intent(Register.this, mainMenu.class);
+                    intent.putExtra("user", txtUsername.getText().toString());
+                    intent.putExtra("password", txtPassword.getText().toString());
+                    intent.putExtra("IDuser", id);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -110,8 +120,8 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    private String makeRequest(String name, String surname, String username, String password, String email) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.0.17:80", "UTF-8");
+    private JSONArray makeRequest(String name, String surname, String username, String password, String email) throws Exception {
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
         multipartRequest.addFormField("Tipo", "Register");
         multipartRequest.addFormField("name", username);
         multipartRequest.addFormField("surname", password);
@@ -120,7 +130,17 @@ public class Register extends AppCompatActivity {
         multipartRequest.addFormField("email", email);
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
-        JSONObject json = new JSONObject(response.get(0));
-        return json.getString("response");
+        JSONArray json = new JSONArray(response.get(0));
+        return json;
+    }
+
+    private JSONArray makeRequestCheck(String username) throws Exception {
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        multipartRequest.addFormField("Tipo", "CheckIfUser");
+        multipartRequest.addFormField("username", username);
+        multipartRequest.addFormField("End", "End");
+        List<String> response = multipartRequest.finish();
+        JSONArray json = new JSONArray(response.get(0));
+        return json;
     }
 }
