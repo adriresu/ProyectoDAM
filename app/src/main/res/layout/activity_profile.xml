@@ -250,8 +250,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
+            android:background="@color/low_blue"
+            android:spinnerMode="dialog"
             android:textAlignment="center"
             android:tooltipText="Serie Favorita" />
 

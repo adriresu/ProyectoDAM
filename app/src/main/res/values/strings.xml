@@ -18,4 +18,6 @@
     <string name="errorRegister08">Name must have more than 5 characters</string>
     <string name="errorRegister09">Surname must have more than 5 characters</string>
     <string name="errorRegister10">Username already exists</string>
+    <string name="errorRegister11">Phone Number must have 9 numbers</string>
+    <string name="errorRegister12">Phone Number must have only numbers</string>
 </resources>

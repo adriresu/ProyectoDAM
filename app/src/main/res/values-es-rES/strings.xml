@@ -2,17 +2,17 @@
 <resources>
     <string name="app_name">ProyectoDAM</string>
     <string name="name">Nombre</string>
-    <string name="login_name">Username</string>
+    <string name="login_name">Nombre de Usuario</string>
     <string name="login_password">Contraseña</string>
-    <string name="login_email">Email</string>
-    <string name="login_telf">Phone</string>
+    <string name="login_email">Correo</string>
+    <string name="login_telf">Telefono</string>
     <string name="login_password2">Repita la Contraseña</string>
-    <string name="character_age">Age</string>
+    <string name="character_age">Edad</string>
 
-    <string name="errorRegister01">Username must have more than 3 characters</string>
-    <string name="errorRegister02">Please write the Password</string>
-    <string name="errorRegister03">The passwords dont match</string>
-    <string name="errorRegister04">Please write a password</string>
+    <string name="errorRegister01">El nombre de usuario debe de tener mas de 3 caracteres</string>
+    <string name="errorRegister02">Por favor escribe una contrasenha</string>
+    <string name="errorRegister03">La contrasenha no coincide</string>
+    <string name="errorRegister04">Por favor escribe una contrasenha</string>
     <string name="errorRegister05">Password must have 8 characters or more</string>
     <string name="errorRegister06">Email format is not valid</string>
     <string name="errorRegister07">Please write an email</string>

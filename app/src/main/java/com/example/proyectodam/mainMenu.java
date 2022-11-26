@@ -38,9 +38,6 @@ public class mainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("SERIES");
-        actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
         name = getIntent().getStringExtra("user");
         password = getIntent().getStringExtra("password");
         idUser = getIntent().getStringExtra("IDuser");
@@ -49,6 +46,9 @@ public class mainMenu extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("SERIES");
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
         ListView listView = (ListView)findViewById(R.id.customListaSeries);
         listaSeries.clear();
         JSONArray array;

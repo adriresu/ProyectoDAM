@@ -1,7 +1,6 @@
 package com.example.proyectodam;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -74,23 +73,71 @@ public class Profile extends AppCompatActivity {
         //Declaramos el boton para el avatar
         ImageView botonAvatar = (ImageView) findViewById(R.id.avatar);
         Button btnSave = (Button) findViewById(R.id.btnSave);
+        EditText txtName = (EditText) findViewById(R.id.editTextPersonName);
+        EditText txtSurname = (EditText) findViewById(R.id.edtTextSurname);
+        EditText txtPhone = (EditText) findViewById(R.id.editTextPhone);
+        EditText txtEmail = (EditText) findViewById(R.id.editTextEmailAddress);
+        Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 
         //On click save
         btnSave.setOnClickListener(view -> {
+                    Boolean flag = true;
 
+                    if (txtName.getText().toString().equals("") || txtName.getText().toString().length() < 3) {
+                        txtName.setError(getString(R.string.errorRegister08));
+                        flag = false;
+                    }
+                    if (txtSurname.getText().toString().equals("") || txtSurname.getText().toString().length() < 3) {
+                        txtSurname.setError(getString(R.string.errorRegister09));
+                        flag = false;
+                    }
+                    try {
+                        String phoneNumber = txtPhone.getText().toString();
+                        if (phoneNumber.length() != 0){
+                            Integer.valueOf(phoneNumber);
+                            if ((phoneNumber.length() < 9 && phoneNumber.length() > 0) || phoneNumber.length() > 9) {
+                                txtPhone.setError(getString(R.string.errorRegister11));
+                                flag = false;
+                            }
+                        }
+                    } catch (Exception e) {
+                        txtPhone.setError(getString(R.string.errorRegister12));
+                        flag = false;
+                    }
+                    ;
+                    if (txtEmail.getText().toString().isEmpty()) {
+                        txtEmail.setError(getString(R.string.errorRegister07));
+                        flag = false;
+                    }
+                    //Regex match
+                    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                    if (!(txtEmail.getText().toString().matches(emailPattern))) {
+                        txtEmail.setError(getString(R.string.errorRegister06));
+                        flag = false;
+                    }
+                    String stringSelected = spinner.getSelectedItem().toString();
+                    String selectedSerie = (stringSelected.split("-"))[0];
+                    if (flag) {
+                        try {
+                    makeRequestUpdateProfile(txtName.getText().toString(), txtSurname.getText().toString(), txtPhone.getText().toString(), txtEmail.getText().toString(), selectedSerie, name);
+                            Toast.makeText(this, "Datos actualizados con exito", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Toast.makeText(this, "Error actualizando los datos", Toast.LENGTH_SHORT).show();
+                        }
+                    }
         });
 
         //On click select image
         botonAvatar.setOnClickListener(
-                view -> {
-                    Intent intent = new Intent();
-                    intent.setType("image/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(Intent.createChooser(intent, "Selecciona una iamgen"), PICK_IMAGE);
-                }
+            view -> {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Selecciona una iamgen"), PICK_IMAGE);
+            }
         );
 
-    }
+    };
 
     @Override
     public void onStart() {
@@ -118,7 +165,13 @@ public class Profile extends AppCompatActivity {
 
                     txtName.setText(dataUser.getString("Nombre"));
                     txtSurname.setText(dataUser.getString("Apellidos"));
-                    txtPhone.setText(dataUser.getString("Telefono"));
+                    if (dataUser.getString("Telefono").equals("null")){
+                        txtPhone.setText("");
+                    }
+                    else{
+                        txtPhone.setText(dataUser.getString("Telefono"));
+                    }
+
                     txtEmail.setText(dataUser.getString("Correo"));
                     selectedSerie = Integer.parseInt(dataUser.getString("Favorita"));
                     typeUser = Integer.parseInt(dataUser.getString("Rol"));
@@ -194,6 +247,18 @@ public class Profile extends AppCompatActivity {
         List<String> response = multipartRequest.finish();
         JSONArray json = new JSONArray(response.get(0));
         return json;
+    };
+    private void makeRequestUpdateProfile(String name, String apellidos, String phone, String email, String favorita, String usuario) throws Exception {
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        multipartRequest.addFormField("Tipo", "UpdateUserInfo");
+        multipartRequest.addFormField("nombre", name);
+        multipartRequest.addFormField("apellidos", apellidos);
+        multipartRequest.addFormField("phone", phone);
+        multipartRequest.addFormField("email", email);
+        multipartRequest.addFormField("favorita", favorita);
+        multipartRequest.addFormField("usuario", usuario);
+        multipartRequest.addFormField("End", "End");
+        List<String> response = multipartRequest.finish();
     };
 
 

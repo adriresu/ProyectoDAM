@@ -38,7 +38,7 @@ public class Register extends AppCompatActivity {
         //Button to register, connect to BBDD
         btnRegister.setOnClickListener(view -> {
             Boolean flag = true;
-            String[] errors = new String[10];
+
             if (txtName.getText().toString().equals("") || txtName.getText().toString().length() < 3) {
                 txtName.setError(getString(R.string.errorRegister08));
                 flag = false;
