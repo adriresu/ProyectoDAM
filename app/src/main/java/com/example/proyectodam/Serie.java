@@ -1,12 +1,17 @@
 package com.example.proyectodam;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -33,11 +38,11 @@ public class Serie extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("OPTIONS");
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
+
         setContentView(R.layout.activity_serie);
 
         user = getIntent().getStringExtra("user");
@@ -111,7 +116,12 @@ public class Serie extends AppCompatActivity {
                     txtSinopsis.setText(dataSerie.getString("Sinopsis"));
                     txtDirection.setText(dataSerie.getString("Direccion"));
 
-                    //characterItem characterTemp = new characterItem();
+                    String preImagen2 = dataSerie.getString("Caratula");
+                    if (preImagen2 != "null"){
+                        byte [] encodeByte = Base64.decode(preImagen2, Base64.DEFAULT);
+                        Bitmap Imagen = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+                        imageSerie.setImageBitmap(Imagen);
+                    }
                 }
 
                 try {
@@ -132,8 +142,10 @@ public class Serie extends AppCompatActivity {
                             String origenCharacter = dataCharacter.getString("Origen");
                             String descripcionCharacter = dataCharacter.getString("Descripcion");
                             String Preimagen = dataCharacter.getString("Imagen");
+
                             byte [] encodeByte = Base64.decode(Preimagen, Base64.DEFAULT);
                             Bitmap Imagen = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+
                             characterItem characterTemp = new characterItem(Imagen, Integer.parseInt(idCharacter), nombreCharacter, apellidosCharacter, Integer.parseInt(edadCharacter), poderCharacter, actorCharacter, personalidadCharacter, origenCharacter, descripcionCharacter);
                             listaCharacter.add(characterTemp);
                         }
@@ -191,6 +203,32 @@ public class Serie extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.header2, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.headerIconDislike:
+                Toast.makeText(this, "Dislike", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.headerIconLike:
+                Toast.makeText(this, "Like", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.headerIconFavourite:
+                Toast.makeText(this, "Favourite Serie", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + item.getItemId());
+        }
+
+        return true;
     }
 
 

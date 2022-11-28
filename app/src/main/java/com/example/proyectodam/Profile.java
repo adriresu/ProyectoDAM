@@ -3,8 +3,11 @@ package com.example.proyectodam;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -68,20 +72,80 @@ public class Profile extends AppCompatActivity {
         //set the spinners adapter to the previously created one.
         //dropdown.setAdapter(adapter);
 
-
-
         //Declaramos el boton para el avatar
         ImageView botonAvatar = (ImageView) findViewById(R.id.avatar);
         Button btnSave = (Button) findViewById(R.id.btnSave);
-        EditText txtName = (EditText) findViewById(R.id.editTextPersonName);
-        EditText txtSurname = (EditText) findViewById(R.id.edtTextSurname);
-        EditText txtPhone = (EditText) findViewById(R.id.editTextPhone);
-        EditText txtEmail = (EditText) findViewById(R.id.editTextEmailAddress);
         Spinner spinner = (Spinner)findViewById(R.id.spinner1);
+
+        TextView labelName = (TextView) findViewById(R.id.txtNameProfile);
+        TextView labelSurName = (TextView) findViewById(R.id.txtSurname);
+        TextView labelPhone = (TextView) findViewById(R.id.txtTelfProfile);
+        TextView labelEmail = (TextView) findViewById(R.id.txtEmailProfile);
+        TextView labelFavourite = (TextView) findViewById(R.id.txtSerieFav);
+        TextView txtName = (TextView) findViewById(R.id.editTextPersonName);
+        TextView txtSurname = (TextView) findViewById(R.id.edtTextSurname);
+        TextView txtPhone = (TextView) findViewById(R.id.editTextPhone);
+        TextView txtEmail = (TextView) findViewById(R.id.editTextEmailAddress);
+        ImageView imgAvatar = (ImageView) findViewById(R.id.avatar);
+
+        try {
+            JSONArray array = makeRequestProfile(name);
+            if (array != null) {
+                int len = array.length();
+                for (int i = 0; i < len; i++) {
+                    JSONObject dataUser = (JSONObject) array.get(i);
+
+                    txtName.setText(dataUser.getString("Nombre"));
+                    txtSurname.setText(dataUser.getString("Apellidos"));
+                    if (dataUser.getString("Telefono").equals("null")){
+                        txtPhone.setText("");
+                    }
+                    else{
+                        txtPhone.setText(dataUser.getString("Telefono"));
+                    }
+
+                    txtEmail.setText(dataUser.getString("Correo"));
+                    selectedSerie = Integer.parseInt(dataUser.getString("Favorita"));
+                    typeUser = Integer.parseInt(dataUser.getString("Rol"));
+
+                    ImageView imgAvatar2 = (ImageView) findViewById(R.id.avatar);
+                    byte[] decodedString = Base64.decode(dataUser.getString("Imagen"), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    imgAvatar2.setImageBitmap(decodedByte);
+
+                    //characterItem characterTemp = new characterItem();
+                }
+
+                if (typeUser == 0){
+                    imgAvatar.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabecera));
+                    labelName.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabecera));
+                    labelSurName.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabecera));
+                    labelPhone.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabecera));
+                    labelEmail.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabecera));
+                    labelFavourite.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabecera));
+                }
+                else if(typeUser == 1){
+                    imgAvatar.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabeceragold));
+                    labelName.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabeceragold));
+                    labelSurName.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabeceragold));
+                    labelPhone.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabeceragold));
+                    labelEmail.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabeceragold));
+                    labelFavourite.setBackgroundDrawable(getResources().getDrawable(R.drawable.gradientcabeceragold));
+                }
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        };
 
         //On click save
         btnSave.setOnClickListener(view -> {
                     Boolean flag = true;
+
+                    Bitmap bitmap = ((BitmapDrawable)imgAvatar.getDrawable()).getBitmap();
+                    String imageSend = getStringImage(bitmap);
+
+
 
                     if (txtName.getText().toString().equals("") || txtName.getText().toString().length() < 3) {
                         txtName.setError(getString(R.string.errorRegister08));
@@ -119,7 +183,7 @@ public class Profile extends AppCompatActivity {
                     String selectedSerie = (stringSelected.split("-"))[0];
                     if (flag) {
                         try {
-                    makeRequestUpdateProfile(txtName.getText().toString(), txtSurname.getText().toString(), txtPhone.getText().toString(), txtEmail.getText().toString(), selectedSerie, name);
+                    makeRequestUpdateProfile(imageSend, txtName.getText().toString(), txtSurname.getText().toString(), txtPhone.getText().toString(), txtEmail.getText().toString(), selectedSerie, name);
                             Toast.makeText(this, "Datos actualizados con exito", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(this, "Error actualizando los datos", Toast.LENGTH_SHORT).show();
@@ -136,8 +200,15 @@ public class Profile extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Selecciona una iamgen"), PICK_IMAGE);
             }
         );
-
     };
+
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
 
     @Override
     public void onStart() {
@@ -175,6 +246,7 @@ public class Profile extends AppCompatActivity {
                     txtEmail.setText(dataUser.getString("Correo"));
                     selectedSerie = Integer.parseInt(dataUser.getString("Favorita"));
                     typeUser = Integer.parseInt(dataUser.getString("Rol"));
+
                     //characterItem characterTemp = new characterItem();
                 }
 
@@ -248,7 +320,7 @@ public class Profile extends AppCompatActivity {
         JSONArray json = new JSONArray(response.get(0));
         return json;
     };
-    private void makeRequestUpdateProfile(String name, String apellidos, String phone, String email, String favorita, String usuario) throws Exception {
+    private void makeRequestUpdateProfile(String binaryImage, String name, String apellidos, String phone, String email, String favorita, String usuario) throws Exception {
         MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
         multipartRequest.addFormField("Tipo", "UpdateUserInfo");
         multipartRequest.addFormField("nombre", name);
@@ -257,6 +329,7 @@ public class Profile extends AppCompatActivity {
         multipartRequest.addFormField("email", email);
         multipartRequest.addFormField("favorita", favorita);
         multipartRequest.addFormField("usuario", usuario);
+        multipartRequest.addFormField("image", binaryImage);
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
     };

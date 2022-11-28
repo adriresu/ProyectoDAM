@@ -3,7 +3,10 @@ package com.example.proyectodam;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -62,6 +65,13 @@ public class Character extends AppCompatActivity {
                     txtOrigen.setText(dataCharacter.getString("Origen"));
                     txtPersonalidad.setText(dataCharacter.getString("Personalidad"));
                     txtDescripcion.setText(dataCharacter.getString("Descripcion"));
+
+                    String preImagen2 = dataCharacter.getString("Imagen");
+                    if (preImagen2 != "null"){
+                        byte [] encodeByte = Base64.decode(preImagen2, Base64.DEFAULT);
+                        Bitmap Imagen = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+                        imageCharacter.setImageBitmap(Imagen);
+                    }
                 }
             }
             else{

@@ -5,14 +5,17 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -46,9 +49,11 @@ public class mainMenu extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("SERIES");
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
+
         ListView listView = (ListView)findViewById(R.id.customListaSeries);
         listaSeries.clear();
         JSONArray array;
@@ -62,10 +67,13 @@ public class mainMenu extends AppCompatActivity {
                     JSONObject dataSerie = (JSONObject) jsonArray.get(i);
                     String idSerie = dataSerie.getString("ID");
                     String estadoSerie = dataSerie.getString("Estado");
-                    String caratulaSerie = dataSerie.getString("Caratula");
                     String tipoSerie = dataSerie.getString("Tipo");
                     String tituloSerie = dataSerie.getString("Titulo");
-                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), BitmapFactory.decodeResource(this.getApplicationContext().getResources(), R.drawable.op), estadoSerie, tipoSerie, tituloSerie);
+
+                    byte[] decodedString = Base64.decode(dataSerie.getString("Caratula"), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), decodedByte, estadoSerie, tipoSerie, tituloSerie);
                     listaSeries.add(serieTemp);
                 }
             }
@@ -139,10 +147,13 @@ public class mainMenu extends AppCompatActivity {
                     JSONObject dataSerie = (JSONObject) jsonArray.get(i);
                     String idSerie = dataSerie.getString("ID");
                     String estadoSerie = dataSerie.getString("Estado");
-                    String caratulaSerie = dataSerie.getString("Caratula");
                     String tipoSerie = dataSerie.getString("Tipo");
                     String tituloSerie = dataSerie.getString("Titulo");
-                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), BitmapFactory.decodeResource(this.getApplicationContext().getResources(), R.drawable.op), estadoSerie, tipoSerie, tituloSerie);
+
+                    byte[] decodedString = Base64.decode(dataSerie.getString("Caratula"), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), decodedByte, estadoSerie, tipoSerie, tituloSerie);
                     listaSeries.add(serieTemp);
                 }
             }

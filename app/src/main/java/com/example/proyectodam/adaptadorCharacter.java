@@ -58,6 +58,7 @@ public class adaptadorCharacter extends BaseAdapter {
         Holder.apellidos.setText(character.getApellidos());
         Holder.origen.setText(String.valueOf(character.getOrigen()));
         Holder.ID.setText(String.valueOf(character.getID()));
+        Holder.imagen.setImageBitmap(character.getImagen());
         return view;
     }
 

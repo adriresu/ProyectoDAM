@@ -63,14 +63,15 @@
 
                 <ImageView
                     android:id="@+id/imageSerie"
+                    android:padding="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="3dp"
                     android:maxWidth="270dp"
                     android:maxHeight="270dp"
-                    android:minWidth="200dp"
-                    android:minHeight="200dp"
+                    android:minWidth="50dp"
+                    android:minHeight="50dp"
                     app:srcCompat="@drawable/notfound" />
 
                 <ImageView

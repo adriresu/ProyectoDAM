@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/headerIconDislike"
+        android:icon="@drawable/dislike"
+        android:title="header/cabecera"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/headerIconLike"
+        android:icon="@drawable/like"
+        android:title="header/cabecera"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/headerIconFavourite"
+        android:icon="@drawable/plus"
+        android:title="header/cabecera"
+        app:showAsAction="always" />
+
+</menu>

@@ -64,22 +64,6 @@ public class serieItem {
         }
     }
 
-    public serieItem(int id, String estado, String genero, String tipo, String titulo){
-        this.id = id;
-        this.titulo = titulo;
-        this.genero = genero;
-        this.estado = estado;
-        if (Integer.parseInt(tipo) == 2){
-            this.tipo = "Anime";
-        }
-        else if(Integer.parseInt(tipo) == 0){
-            this.tipo = "Serie";
-        }
-        else if (Integer.parseInt(tipo) == 1){
-            this.tipo = "Pelicula";
-        }
-    }
-
     public serieItem(int id, Bitmap Imagen, String estado, String tipo, String titulo){
         this.id = id;
         this.caratula = Imagen;

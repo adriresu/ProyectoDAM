@@ -20,8 +20,10 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="5dp"
-            android:contentDescription="futbol"
-            android:scaleType="fitCenter"
+            android:padding="2dp"
+            android:background="@drawable/gradientcabecera"
+            android:contentDescription="Image Serie"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/notfound"
             tools:visibility="visible" />
 
