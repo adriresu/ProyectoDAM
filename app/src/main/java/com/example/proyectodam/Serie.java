@@ -32,6 +32,7 @@ public class Serie extends AppCompatActivity {
     String user;
     String password;
     String idUser;
+    String idSerie;
     Boolean viewed = false;
     Boolean exists = false;
 
@@ -58,7 +59,7 @@ public class Serie extends AppCompatActivity {
         JSONArray array;
         JSONArray jsonArray;
 
-        String idSerie = getIntent().getStringExtra("IDserie");
+        idSerie = getIntent().getStringExtra("IDserie");
         //Control data
         TextView txtTittle = (TextView) findViewById(R.id.tituloSerieView);
         TextView txtGenero = (TextView) findViewById(R.id.generoSerieView);
@@ -115,7 +116,14 @@ public class Serie extends AppCompatActivity {
                     txtAnhoEstreno.setText(dataSerie.getString("Anho_estreno"));
                     txtSinopsis.setText(dataSerie.getString("Sinopsis"));
                     txtDirection.setText(dataSerie.getString("Direccion"));
-
+                    if (dataSerie.getString("Media").contains(".")){
+                        String nota = dataSerie.getString("Media");
+                        String[] NotaSplit = nota.split("\\.");
+                        txtMediaNota.setText(NotaSplit[0]);
+                    }
+                    else{
+                        txtMediaNota.setText(dataSerie.getString("Media"));
+                    }
                     String preImagen2 = dataSerie.getString("Caratula");
                     if (preImagen2 != "null"){
                         byte [] encodeByte = Base64.decode(preImagen2, Base64.DEFAULT);
@@ -214,20 +222,65 @@ public class Serie extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        boolean voted = false;
+        int lod = -1;
         switch (item.getItemId()){
             case R.id.headerIconDislike:
-                Toast.makeText(this, "Dislike", Toast.LENGTH_SHORT).show();
+                voted = true;
+                lod = 0;
                 break;
             case R.id.headerIconLike:
-                Toast.makeText(this, "Like", Toast.LENGTH_SHORT).show();
+                voted = true;
+                lod = 1;
                 break;
             case R.id.headerIconFavourite:
-                Toast.makeText(this, "Favourite Serie", Toast.LENGTH_SHORT).show();
+                voted = false;
+                try {
+                    makeRequestAddFavourite(idSerie, user);
+                    Toast.makeText(this, "Added media as Favourite", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + item.getItemId());
         }
 
+        if (voted){
+            try {
+                String response = makeRequestLikeDislike(idSerie, idUser, String.valueOf(lod));
+                if (response.equals("True")){
+                    Toast.makeText(this, "Media has been voted", Toast.LENGTH_SHORT).show();
+                    JSONArray array;
+                    JSONArray jsonArray;
+                    try{
+                        array = makeRequest(idSerie);
+                        jsonArray = (JSONArray)array;
+                        TextView txtMediaNota = (TextView) findViewById(R.id.averageSerieView);
+                        if (jsonArray != null) {
+                            int len = jsonArray.length();
+                            for (int i=0;i<len;i++){
+                                JSONObject dataSerie = (JSONObject) jsonArray.get(i);
+                                if (dataSerie.getString("Media").contains(".")){
+                                    String nota = dataSerie.getString("Media").split("\\.")[0];
+                                    txtMediaNota.setText(nota);
+                                }
+                                else{
+                                    txtMediaNota.setText(dataSerie.getString("Media"));
+                                }
+                            }}
+                    }catch (Exception e){
+
+                    }
+                }
+                else{
+                    Toast.makeText(this, "Media couldn't been voted", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, "Media couldn't been voted", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
         return true;
     }
 
@@ -269,6 +322,29 @@ public class Serie extends AppCompatActivity {
         multipartRequest.addFormField("id", idSerie);
         multipartRequest.addFormField("idUser", idUser);
         multipartRequest.addFormField("viewed", String.valueOf(viewed));
+        multipartRequest.addFormField("End", "End");
+        List<String> response = multipartRequest.finish();
+        JSONObject json = new JSONObject(response.get(0));
+        return json.getString("response");
+    };
+
+    private JSONArray makeRequestAddFavourite(String idSerie, String idUser) throws Exception {
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        multipartRequest.addFormField("Tipo", "AddFavourite");
+        multipartRequest.addFormField("idUser", idUser);
+        multipartRequest.addFormField("favorita", idSerie);
+        multipartRequest.addFormField("End", "End");
+        List<String> response = multipartRequest.finish();
+        JSONArray json = new JSONArray(response.get(0));
+        return json;
+    };
+
+    private String makeRequestLikeDislike(String idSerie, String idUser, String like) throws Exception {
+        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        multipartRequest.addFormField("Tipo", "serieLikeDislike");
+        multipartRequest.addFormField("idSerie", idSerie);
+        multipartRequest.addFormField("idUser", idUser);
+        multipartRequest.addFormField("like", like);
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
         JSONObject json = new JSONObject(response.get(0));
