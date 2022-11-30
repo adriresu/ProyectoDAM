@@ -41,7 +41,7 @@ public class Serie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("OPTIONS");
+        actionBar.setTitle(getResources().getString(R.string.options));
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
 
         setContentView(R.layout.activity_serie);
@@ -159,7 +159,7 @@ public class Serie extends AppCompatActivity {
                         }
                     }
                     else{
-                        Toast.makeText(this, "Any media in the BBDD", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getResources().getString(R.string.not_media_bd) , Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -191,7 +191,7 @@ public class Serie extends AppCompatActivity {
                 }
             }
             else{
-                Toast.makeText(this, "Any media in the BBDD", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.not_media_bd) , Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {
@@ -228,19 +228,22 @@ public class Serie extends AppCompatActivity {
             case R.id.headerIconDislike:
                 voted = true;
                 lod = 0;
+                Toast.makeText(this, getResources().getString(R.string.dislike) , Toast.LENGTH_SHORT).show();
                 break;
             case R.id.headerIconLike:
                 voted = true;
                 lod = 1;
+                Toast.makeText(this, getResources().getString(R.string.like) , Toast.LENGTH_SHORT).show();
                 break;
             case R.id.headerIconFavourite:
                 voted = false;
                 try {
                     makeRequestAddFavourite(idSerie, user);
-                    Toast.makeText(this, "Added media as Favourite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getResources().getString(R.string.fav_media), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                Toast.makeText(this, getResources().getString(R.string.fav_media) , Toast.LENGTH_SHORT).show();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + item.getItemId());

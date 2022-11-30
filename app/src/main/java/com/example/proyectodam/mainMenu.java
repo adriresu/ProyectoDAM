@@ -51,7 +51,7 @@ public class mainMenu extends AppCompatActivity {
         super.onStart();
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("SERIES");
+        actionBar.setTitle(getResources().getString(R.string.series));
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
 
         ListView listView = (ListView)findViewById(R.id.customListaSeries);
@@ -78,7 +78,7 @@ public class mainMenu extends AppCompatActivity {
                 }
             }
             else{
-                Toast.makeText(this, "Any media in the BBDD", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.not_media_bd , Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,15 +121,15 @@ public class mainMenu extends AppCompatActivity {
                 break;
             case R.id.headerIconOption1:
                 typeMedia = 0;
-                getSupportActionBar().setTitle("SERIES");
+                getSupportActionBar().setTitle(getResources().getString(R.string.series));
                 break;
             case R.id.headerIconOption2:
                 typeMedia = 1;
-                getSupportActionBar().setTitle("FILMS");
+                getSupportActionBar().setTitle(getResources().getString(R.string.films));
                 break;
             case R.id.headerIconOption3:
                 typeMedia = 2;
-                getSupportActionBar().setTitle("ANIMES");
+                getSupportActionBar().setTitle(getResources().getString(R.string.animes));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + item.getItemId());
@@ -158,7 +158,7 @@ public class mainMenu extends AppCompatActivity {
                 }
             }
             else{
-                Toast.makeText(this, "Any media in the BBDD", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.not_media_bd , Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             e.printStackTrace();

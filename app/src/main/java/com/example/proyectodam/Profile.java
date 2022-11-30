@@ -49,7 +49,7 @@ public class Profile extends AppCompatActivity {
                     imagen.setImageBitmap(BitmapFactory.decodeStream(inputStream));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                    Toast.makeText(this, "Algo ha salido mal", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.wrong, Toast.LENGTH_SHORT).show();
                 }
             }
         } else {
@@ -184,9 +184,9 @@ public class Profile extends AppCompatActivity {
                     if (flag) {
                         try {
                     makeRequestUpdateProfile(imageSend, txtName.getText().toString(), txtSurname.getText().toString(), txtPhone.getText().toString(), txtEmail.getText().toString(), selectedSerie, name);
-                            Toast.makeText(this, "Datos actualizados con exito", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, R.string.updated, Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
-                            Toast.makeText(this, "Error actualizando los datos", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, R.string.error_update , Toast.LENGTH_SHORT).show();
                         }
                     }
         });
@@ -197,7 +197,7 @@ public class Profile extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Selecciona una iamgen"), PICK_IMAGE);
+                startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.select_img)), PICK_IMAGE);
             }
         );
     };
@@ -329,7 +329,7 @@ public class Profile extends AppCompatActivity {
         multipartRequest.addFormField("email", email);
         multipartRequest.addFormField("favorita", favorita);
         multipartRequest.addFormField("usuario", usuario);
-        multipartRequest.addFormField("image", binaryImage);
+        multipartRequest.addFormField("bitmap", binaryImage);
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
     };

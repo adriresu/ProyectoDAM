@@ -75,7 +75,7 @@ public class Character extends AppCompatActivity {
                 }
             }
             else{
-                Toast.makeText(this, "Any media in the BBDD", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.not_media_bd , Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             e.printStackTrace();

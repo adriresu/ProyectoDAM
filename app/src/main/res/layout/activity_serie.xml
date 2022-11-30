@@ -116,7 +116,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/gradientcabecera"
                             android:fontFamily="@font/baloo_bhai_2_extrabold"
-                            android:text="Director"
+                            android:text="@string/director"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:paddingLeft="10dp"
@@ -164,7 +164,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Genero"
+                            android:text="@string/gender"
                             android:background="@drawable/gradientcabecera"
                             android:fontFamily="@font/baloo_bhai_2_extrabold"
                             android:textAllCaps="true"
@@ -212,7 +212,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Anho Estreno"
+                        android:text="@string/premiere_year"
                         android:textColor="@color/white"
                         android:textSize="20dp"
                         android:background="@drawable/gradientcabecera"
@@ -261,7 +261,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="Estado"
+                            android:text="@string/status"
                             android:textSize="20dp"
                             android:textColor="@color/white"
                             android:background="@drawable/gradientcabecera"
@@ -303,21 +303,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/tipoDeSerie"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Tipo"
-                        android:textColor="@color/white"
-                        android:textSize="20dp"
-                        android:background="@drawable/gradientcabecera"
-                        android:fontFamily="@font/baloo_bhai_2_extrabold"
-                        android:textAllCaps="true"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="2dp"
-                        android:paddingBottom="2dp"/>
+
+                        <TextView
+                            android:id="@+id/tipoDeSerie"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/type"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            android:background="@drawable/gradientcabecera"
+                            android:fontFamily="@font/baloo_bhai_2_extrabold"
+                            android:textAllCaps="true"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -358,7 +359,7 @@
                     android:paddingTop="3dp"
                     android:paddingRight="15dp"
                     android:paddingBottom="3dp"
-                    android:text="Sinopsis"
+                    android:text="@string/synopsis"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="25dp"
@@ -373,7 +374,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:fontFamily="@font/baloo_bhai_2_extrabold"
-                    android:text="Synopsis not found. Contact with administrator to add a Synopsis"
+                    android:text="@string/synopsis_text"
                     android:textColor="@color/white"
                     android:textSize="22dp" />
             </LinearLayout>

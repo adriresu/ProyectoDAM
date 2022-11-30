@@ -96,7 +96,7 @@ public class Register extends AppCompatActivity {
                     JSONArray array = makeRequest(txtName.getText().toString(), txtSurname.getText().toString(), txtUsername.getText().toString(), txtPassword.getText().toString(), txtEmail.getText().toString());
                     JSONArray jsonArrayCharacter = (JSONArray)array;
 
-                    Toast.makeText(this, "Se ha creado correctamente el usuario", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.createduser_successfull , Toast.LENGTH_SHORT).show();
                     JSONObject dataUser = (JSONObject) jsonArrayCharacter.get(0);
                     String id = dataUser.getString("ID");
                     Intent intent = new Intent(Register.this, mainMenu.class);

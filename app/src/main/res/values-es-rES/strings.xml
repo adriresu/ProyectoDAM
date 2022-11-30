@@ -1,22 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    //translate de los activity
     <string name="app_name">ProyectoDAM</string>
     <string name="name">Nombre</string>
+    <string name="surname">Apellidos</string>
     <string name="login_name">Nombre de Usuario</string>
     <string name="login_password">Contraseña</string>
     <string name="login_email">Correo</string>
     <string name="login_telf">Telefono</string>
     <string name="login_password2">Repita la Contraseña</string>
     <string name="character_age">Edad</string>
+    <string name="actor">Actor</string>
+    <string name="birthplace">Origen</string>
+    <string name="personality">Personalidad</string>
+    <string name="active">Activa</string>
+    <string name="power">Poder</string>
+    <string name="luffypower">Se puede estirar mucho y pegar cabezazos</string>
+    <string name="description">Descripción</string>
+    <string name="descriptiontext">Soy una descipcion de un personaje</string>
 
+    <string name="login">INICIO SESION</string>
+    <string name="singin">REGISTRARSE</string>
+    <string name="enter">ENTRAR</string>
+    <string name="create_acc">Crear una cuenta</string>
+    <string name="fav_media">Media Favorita</string>
+    <string name="save">GUARDAR</string>
+    <string name="register">REGISTRO</string>
+    <string name="login_with_acc">INICIAR CON UNA CUENTA</string>
+
+    <string name="synopsis_text">Sinopsis no encontrada, contacte con un administrador para añadirla</string>
+    <string name="synopsis">Sinopsis</string>
+    <string name="all_media">Serie/Peli/Anime</string>
+    <string name="type">Tipo</string>
+    <string name="status">Estado</string>
+    <string name="premiere_year">Año Estreno</string>
+    <string name="gender">Genero</string>
+    <string name="director">Director</string>
+    <string name="title">Titulo</string>
+
+    //translate del codigo
     <string name="errorRegister01">El nombre de usuario debe de tener mas de 3 caracteres</string>
-    <string name="errorRegister02">Por favor escribe una contrasenha</string>
-    <string name="errorRegister03">La contrasenha no coincide</string>
-    <string name="errorRegister04">Por favor escribe una contrasenha</string>
-    <string name="errorRegister05">Password must have 8 characters or more</string>
-    <string name="errorRegister06">Email format is not valid</string>
-    <string name="errorRegister07">Please write an email</string>
-    <string name="errorRegister08">Name must have more than 5 characters</string>
-    <string name="errorRegister09">Surname must have more than 5 characters</string>
-    <string name="errorRegister10">Username already exists</string>
+    <string name="errorRegister02">Por favor escribe una contraseña</string>
+    <string name="errorRegister03">La contraseña no coincide</string>
+    <string name="errorRegister04">Por favor escribe una contraseña</string>
+    <string name="errorRegister05">La contraseña debe tener 8 caracteres o más</string>
+    <string name="errorRegister06">El formato del correo electronico no es valido</string>
+    <string name="errorRegister07">Por favor escriba un correo electronico</string>
+    <string name="errorRegister08">El nombre debe tener más de 5 caracteres</string>
+    <string name="errorRegister09">El apellido debe tener más de 5 caracteres</string>
+    <string name="errorRegister10">Ya existe ese usuario</string>
+    <string name="errorRegister11">El número de telefono debe tener 9 caracteres</string>
+    <string name="errorRegister12">El número de telefono solo debe contener números</string>
+    <string name="not_media_bd">No hay registros en la BD</string>
+    <string name="errorRegister13">El nombre o la contraseña son incorrectos, por favor vuelva a intentarlo</string>
+    <string name="enter_username">Introduzca Usuario</string>
+    <string name="enter_password">Introduzca Contraseña</string>
+    <string name="series">SERIES</string>
+    <string name="films">PELICULAS</string>
+    <string name="animes">ANIMES</string>
+    <string name="options">OPCIONES</string>
+    <string name="dislike">No me gusta</string>
+    <string name="like">Me gusta</string>
+    <string name="updated">Datos actualizados con exito</string>
+    <string name="error_update">Error actualizando los datos</string>
+    <string name="select_img">Selecciona una imagen</string>
+    <string name="wrong">Algo ha salido mal</string>
+    <string name="createduser_successfull">Se ha creado correctamente el usuario</string>
+
+
+
 </resources>

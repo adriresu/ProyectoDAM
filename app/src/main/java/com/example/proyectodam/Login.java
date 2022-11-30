@@ -45,11 +45,11 @@ public class Login extends AppCompatActivity {
             Boolean flag = true;
 
             if (txtUsername.getText().length() <= 0){
-                txtUsername.setError("Enter Username");
+                txtUsername.setError(getResources().getString(R.string.enter_username));
                 flag = false;
             }
             if (txtPassword.getText().length() <= 0){
-                txtPassword.setError("Enter Password");
+                txtPassword.setError(getResources().getString(R.string.enter_password));
                 flag = false;
             }
 
@@ -68,7 +68,7 @@ public class Login extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else{
-                        Toast.makeText(this, "Name or password are incorect, please, try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.not_media_bd , Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

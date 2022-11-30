@@ -1,13 +1,45 @@
 <resources>
+
+    //translate de los activity
     <string name="app_name">ProyectoDAM</string>
     <string name="name">Name</string>
+    <string name="surname">Surname</string>
     <string name="login_name">Username</string>
     <string name="login_password">Password</string>
     <string name="login_email">Email</string>
     <string name="login_telf">Phone</string>
     <string name="login_password2">Repeat Password</string>
     <string name="character_age">Age</string>
+    <string name="actor">Actor</string>
+    <string name="birthplace">Birthplace</string>
+    <string name="personality">Personality</string>
+    <string name="active">Active</string>
+    <string name="power">Power</string>
+    <string name="luffypower">He can stretch a lot and hit headbutts</string>
+    <string name="description">Description</string>
+    <string name="descriptiontext">Im a description of a chapter</string>
 
+    <string name="login">LOGIN</string>
+    <string name="singin">SIGN IN</string>
+    <string name="enter">ENTER</string>
+    <string name="create_acc">Create an account</string>
+    <string name="fav_media">Favourite Media</string>
+    <string name="save">SAVE</string>
+    <string name="register">REGISTER</string>
+    <string name="login_with_acc">LOGIN WITH ACCOUNT</string>
+
+
+    <string name="synopsis_text">Synopsis not found. Contact with administrator to add a Synopsis</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="all_media">Serie/Film/Anime</string>
+    <string name="type">Type</string>
+    <string name="status">Status</string>
+    <string name="premiere_year">Premiere Year</string>
+    <string name="gender">Gender</string>
+    <string name="director">Director</string>
+    <string name="title">Title</string>
+
+    //translate del codigo
     <string name="errorRegister01">Username must have more than 3 characters</string>
     <string name="errorRegister02">Please write the Password</string>
     <string name="errorRegister03">The passwords dont match</string>
@@ -20,4 +52,24 @@
     <string name="errorRegister10">Username already exists</string>
     <string name="errorRegister11">Phone Number must have 9 numbers</string>
     <string name="errorRegister12">Phone Number must have only numbers</string>
+    <string name="not_media_bd">Any media in the BD</string>
+    <string name="errorRegister13">Name or password are incorect, please, try again</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="series">SERIES</string>
+    <string name="films">FILMS</string>
+    <string name="animes">ANIMES</string>
+    <string name="options">OPTIONS</string>
+    <string name="dislike">Dislike</string>
+    <string name="like">Like</string>
+    <string name="updated">Data updated succesfully</string>
+    <string name="error_update">Data updated error</string>
+    <string name="select_img">Select an imagen</string>
+    <string name="wrong">Something goes wrong</string>
+    <string name="createduser_successfull">User has been created successfully</string>
+
+
+
+
+
 </resources>

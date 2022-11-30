@@ -19,7 +19,7 @@
         android:layout_margin="50dp"
         android:fontFamily="@font/baloo_bhai_2_extrabold"
         android:gravity="center"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:textColor="@color/teal_200"
         android:textSize="48sp"
         android:textStyle="bold" />
@@ -72,7 +72,7 @@
         android:paddingTop="5dp"
         android:paddingRight="30dp"
         android:paddingBottom="5dp"
-        android:text="SIGN IN"
+        android:text="@string/enter"
         android:textColor="#00695C"
         android:textSize="27sp"></Button>
 
@@ -91,7 +91,7 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="#A6B4FDF4"
         android:fontFamily="@font/baloo_bhai_2_extrabold"
-        android:text="Create an account"
+        android:text="@string/create_acc"
         android:textColor="#006058"
         android:textSize="14dp"></Button>
 
