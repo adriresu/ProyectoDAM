@@ -19,15 +19,18 @@
     <string name="luffypower">Se puede estirar mucho y pegar cabezazos</string>
     <string name="description">Descripción</string>
     <string name="descriptiontext">Soy una descipcion de un personaje</string>
+    <string name="logout">CERRAR SESION</string>
+    <string name="media_voted">El contenido multimedia ha sido votado</string>
 
     <string name="login">INICIO SESION</string>
     <string name="singin">REGISTRARSE</string>
     <string name="enter">ENTRAR</string>
     <string name="create_acc">Crear una cuenta</string>
-    <string name="fav_media">Media Favorita</string>
+    <string name="fav_media">Añadido este contenido multimedia como favorito</string>
     <string name="save">GUARDAR</string>
     <string name="register">REGISTRO</string>
     <string name="login_with_acc">INICIAR CON UNA CUENTA</string>
+    <string name="fav_media_text">CONTENIDO FAVORITO</string>
 
     <string name="synopsis_text">Sinopsis no encontrada, contacte con un administrador para añadirla</string>
     <string name="synopsis">Sinopsis</string>

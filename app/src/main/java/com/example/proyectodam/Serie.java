@@ -13,8 +13,10 @@ import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,13 +30,10 @@ import java.util.List;
 public class Serie extends AppCompatActivity {
 
     public static ArrayList<characterItem> listaCharacter = new ArrayList<characterItem>();
-    ListView listview;
-    String user;
-    String password;
-    String idUser;
     String idSerie;
     Boolean viewed = false;
     Boolean exists = false;
+    ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +44,6 @@ public class Serie extends AppCompatActivity {
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
 
         setContentView(R.layout.activity_serie);
-
-        user = getIntent().getStringExtra("user");
-        password = getIntent().getStringExtra("password");
-        idUser = getIntent().getStringExtra("IDuser");
     }
     @Override
     public void onStart(){
@@ -85,7 +80,7 @@ public class Serie extends AppCompatActivity {
                     imageViewed.setImageResource(R.drawable.viewed);
                     viewed = true;
                 }
-                String respuesta = makeRequestViewed(idSerie, idUser, viewedSerie);
+                String respuesta = makeRequestViewed(idSerie, Login.idUser, viewedSerie);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -122,7 +117,9 @@ public class Serie extends AppCompatActivity {
                         txtMediaNota.setText(NotaSplit[0]);
                     }
                     else{
-                        txtMediaNota.setText(dataSerie.getString("Media"));
+                        if (dataSerie.getString("Media") != "null" && dataSerie.getString("Media") != "Null" && dataSerie.getString("Media") != null){
+                            txtMediaNota.setText(dataSerie.getString("Media"));
+                        }
                     }
                     String preImagen2 = dataSerie.getString("Caratula");
                     if (preImagen2 != "null"){
@@ -157,6 +154,13 @@ public class Serie extends AppCompatActivity {
                             characterItem characterTemp = new characterItem(Imagen, Integer.parseInt(idCharacter), nombreCharacter, apellidosCharacter, Integer.parseInt(edadCharacter), poderCharacter, actorCharacter, personalidadCharacter, origenCharacter, descripcionCharacter);
                             listaCharacter.add(characterTemp);
                         }
+
+                        lista = (ListView) findViewById(R.id.listaPersonajes);
+                        ViewGroup.LayoutParams params = lista.getLayoutParams();
+                        int totalHeight = 450 * listaCharacter.size();
+                        params.height = totalHeight;
+                        lista.setLayoutParams(params);
+
                     }
                     else{
                         Toast.makeText(this, getResources().getString(R.string.not_media_bd) , Toast.LENGTH_SHORT).show();
@@ -165,7 +169,7 @@ public class Serie extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 try {
-                    JSONArray arrayExtraSerieInfo =  makeRequestextraSerieInfo(idSerie, idUser);
+                    JSONArray arrayExtraSerieInfo =  makeRequestextraSerieInfo(idSerie, Login.idUser);
                     JSONArray jsonarrayExtraSerieInfo = (JSONArray)arrayExtraSerieInfo;
                     if (jsonarrayExtraSerieInfo != null) {
                         exists = true;
@@ -203,14 +207,13 @@ public class Serie extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(Serie.this, Character.class);
-                intent.putExtra("user", user);
-                intent.putExtra("password", password);
+                intent.putExtra("user", Login.name);
+                intent.putExtra("password", Login.password);
                 intent.putExtra("id", Integer.toString(listaCharacter.get(position).getID()));
-                intent.putExtra("IDuser", idUser);
+                intent.putExtra("IDuser", Login.idUser);
                 startActivity(intent);
             }
         });
-
     }
 
 
@@ -228,22 +231,22 @@ public class Serie extends AppCompatActivity {
             case R.id.headerIconDislike:
                 voted = true;
                 lod = 0;
-                Toast.makeText(this, getResources().getString(R.string.dislike) , Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.media_voted) , Toast.LENGTH_SHORT).show();
                 break;
             case R.id.headerIconLike:
                 voted = true;
                 lod = 1;
-                Toast.makeText(this, getResources().getString(R.string.like) , Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.media_voted) , Toast.LENGTH_SHORT).show();
                 break;
             case R.id.headerIconFavourite:
                 voted = false;
                 try {
-                    makeRequestAddFavourite(idSerie, user);
+                    makeRequestAddFavourite(idSerie, Login.name);
                     Toast.makeText(this, getResources().getString(R.string.fav_media), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
+                    Toast.makeText(this, getResources().getString(R.string.fav_media), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-                Toast.makeText(this, getResources().getString(R.string.fav_media) , Toast.LENGTH_SHORT).show();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + item.getItemId());
@@ -251,9 +254,9 @@ public class Serie extends AppCompatActivity {
 
         if (voted){
             try {
-                String response = makeRequestLikeDislike(idSerie, idUser, String.valueOf(lod));
+                String response = makeRequestLikeDislike(idSerie, Login.idUser, String.valueOf(lod));
                 if (response.equals("True")){
-                    Toast.makeText(this, "Media has been voted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getResources().getString(R.string.media_voted), Toast.LENGTH_SHORT).show();
                     JSONArray array;
                     JSONArray jsonArray;
                     try{
@@ -334,7 +337,7 @@ public class Serie extends AppCompatActivity {
     private JSONArray makeRequestAddFavourite(String idSerie, String idUser) throws Exception {
         MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
         multipartRequest.addFormField("Tipo", "AddFavourite");
-        multipartRequest.addFormField("idUser", idUser);
+        multipartRequest.addFormField("usuario", idUser);
         multipartRequest.addFormField("favorita", idSerie);
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();

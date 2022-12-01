@@ -236,7 +236,7 @@
             android:paddingTop="3dp"
             android:paddingRight="15dp"
             android:paddingBottom="3dp"
-            android:text="@string/fav_media"
+            android:text="@string/fav_media_text"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -271,6 +271,18 @@
             android:text="@string/save"
             android:textColor="#00695C"
             android:textSize="27sp"></Button>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@color/black"
+            android:fontFamily="@font/baloo_bhai_2_extrabold"
+            android:text="@string/logout"
+            android:textColor="#00695C"
+            android:textSize="12sp"></Button>
 
     </LinearLayout>
 </ScrollView>

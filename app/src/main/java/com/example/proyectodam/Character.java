@@ -20,8 +20,6 @@ import java.util.List;
 
 public class Character extends AppCompatActivity {
 
-    String user;
-    String password;
     String characterId;
 
     @Override
@@ -34,9 +32,9 @@ public class Character extends AppCompatActivity {
         catch (NullPointerException e){}
         setContentView(R.layout.activity_character);
 
-        user = getIntent().getStringExtra("user");
-        password = getIntent().getStringExtra("password");
-        characterId = getIntent().getStringExtra("id");
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
+
 
         TextView txtNombre = (TextView) findViewById(R.id.nombreCharacter);
         TextView txtApellidos = (TextView) findViewById(R.id.apellidosCharacter);
@@ -49,7 +47,7 @@ public class Character extends AppCompatActivity {
         ImageView imageCharacter = (ImageView) findViewById(R.id.imageCharacter);
 
         try {
-            JSONArray array =  makeRequest(characterId);
+            JSONArray array =  makeRequest(id);
             JSONArray jsonArray = (JSONArray)array;
             if (jsonArray != null) {
                 int len = jsonArray.length();

@@ -19,6 +19,9 @@ import java.util.List;
 
 public class Login extends AppCompatActivity {
 
+    public static String name;
+    public static String password;
+    public static String idUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +88,7 @@ public class Login extends AppCompatActivity {
     }
 
     private JSONArray makeRequest(String username, String password) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://79.116.2.183:80", "UTF-8");
         multipartRequest.addFormField("Tipo", "Login");
         multipartRequest.addFormField("username", username);
         multipartRequest.addFormField("password", password);

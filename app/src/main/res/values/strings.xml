@@ -18,15 +18,18 @@
     <string name="luffypower">He can stretch a lot and hit headbutts</string>
     <string name="description">Description</string>
     <string name="descriptiontext">Im a description of a chapter</string>
+    <string name="logout">LOG OUT</string>
+    <string name="media_voted">Media has been voted</string>
 
     <string name="login">LOGIN</string>
     <string name="singin">SIGN IN</string>
     <string name="enter">ENTER</string>
     <string name="create_acc">Create an account</string>
-    <string name="fav_media">Favourite Media</string>
+    <string name="fav_media">Added this media as favourite</string>
     <string name="save">SAVE</string>
     <string name="register">REGISTER</string>
     <string name="login_with_acc">LOGIN WITH ACCOUNT</string>
+    <string name="fav_media_text">FAVOURITE CONTENT</string>
 
 
     <string name="synopsis_text">Synopsis not found. Contact with administrator to add a Synopsis</string>
@@ -67,9 +70,6 @@
     <string name="select_img">Select an imagen</string>
     <string name="wrong">Something goes wrong</string>
     <string name="createduser_successfull">User has been created successfully</string>
-
-
-
 
 
 </resources>

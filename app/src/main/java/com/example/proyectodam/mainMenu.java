@@ -30,9 +30,6 @@ public class mainMenu extends AppCompatActivity {
     public static ArrayList<serieItem> listaSeries = new ArrayList<serieItem>();
 
     //Loggin Info
-    String name;
-    String password;
-    String idUser;
     int defaultType = 0;
 
     @Override
@@ -41,9 +38,9 @@ public class mainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        name = getIntent().getStringExtra("user");
-        password = getIntent().getStringExtra("password");
-        idUser = getIntent().getStringExtra("IDuser");
+        Login.name = getIntent().getStringExtra("user");
+        Login.password = getIntent().getStringExtra("password");
+        Login.idUser = getIntent().getStringExtra("IDuser");
     }
 
     @Override
@@ -53,6 +50,11 @@ public class mainMenu extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getResources().getString(R.string.series));
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradientcabecera));
+
+        if (Login.name.equals("")){
+            Intent intent = new Intent(mainMenu.this, Login.class);
+            startActivity(intent);
+        }
 
         ListView listView = (ListView)findViewById(R.id.customListaSeries);
         listaSeries.clear();
@@ -91,10 +93,10 @@ public class mainMenu extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(mainMenu.this, Serie.class);
-                intent.putExtra("user", name);
-                intent.putExtra("password", password);
+                intent.putExtra("user", Login.name);
+                intent.putExtra("password", Login.password);
                 intent.putExtra("IDserie", Integer.toString(listaSeries.get(position).getID()));
-                intent.putExtra("IDuser", idUser);
+                intent.putExtra("IDuser", Login.idUser);
                 startActivity(intent);
             }
         });
@@ -114,9 +116,9 @@ public class mainMenu extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.headerIcon:
                 Intent intent = new Intent(mainMenu.this, Profile.class);
-                intent.putExtra("user", name);
-                intent.putExtra("password", password);
-                intent.putExtra("IDuser", idUser);
+                intent.putExtra("user", Login.name);
+                intent.putExtra("password", Login.password);
+                intent.putExtra("IDuser", Login.idUser);
                 startActivity(intent);
                 break;
             case R.id.headerIconOption1:
@@ -169,10 +171,10 @@ public class mainMenu extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(mainMenu.this, Serie.class);
-                    intent.putExtra("user", name);
-                    intent.putExtra("password", password);
+                    intent.putExtra("user", Login.name);
+                    intent.putExtra("password", Login.password);
                     intent.putExtra("IDserie", Integer.toString(listaSeries.get(position).getID()));
-                    intent.putExtra("IDuser", idUser);
+                    intent.putExtra("IDuser", Login.idUser);
                     startActivity(intent);
                 }
             });

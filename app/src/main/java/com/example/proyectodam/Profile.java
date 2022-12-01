@@ -34,8 +34,6 @@ public class Profile extends AppCompatActivity {
     List<String> seriesName = new ArrayList<String>();
     int selectedSerie;
     int typeUser;
-    String name;
-    String password;
 
     //Creamos el picker
     @Override
@@ -66,8 +64,6 @@ public class Profile extends AppCompatActivity {
         }
         catch (NullPointerException e){};
         setContentView(R.layout.activity_profile);
-        name = getIntent().getStringExtra("user");
-        password = getIntent().getStringExtra("password");
         //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         //set the spinners adapter to the previously created one.
         //dropdown.setAdapter(adapter);
@@ -75,6 +71,7 @@ public class Profile extends AppCompatActivity {
         //Declaramos el boton para el avatar
         ImageView botonAvatar = (ImageView) findViewById(R.id.avatar);
         Button btnSave = (Button) findViewById(R.id.btnSave);
+        Button btnLogout = (Button) findViewById(R.id.btnLogout);
         Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 
         TextView labelName = (TextView) findViewById(R.id.txtNameProfile);
@@ -89,7 +86,7 @@ public class Profile extends AppCompatActivity {
         ImageView imgAvatar = (ImageView) findViewById(R.id.avatar);
 
         try {
-            JSONArray array = makeRequestProfile(name);
+            JSONArray array = makeRequestProfile(Login.name);
             if (array != null) {
                 int len = array.length();
                 for (int i = 0; i < len; i++) {
@@ -183,12 +180,21 @@ public class Profile extends AppCompatActivity {
                     String selectedSerie = (stringSelected.split("-"))[0];
                     if (flag) {
                         try {
-                    makeRequestUpdateProfile(imageSend, txtName.getText().toString(), txtSurname.getText().toString(), txtPhone.getText().toString(), txtEmail.getText().toString(), selectedSerie, name);
+                    makeRequestUpdateProfile(imageSend, txtName.getText().toString(), txtSurname.getText().toString(), txtPhone.getText().toString(), txtEmail.getText().toString(), selectedSerie, Login.name);
                             Toast.makeText(this, R.string.updated, Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(this, R.string.error_update , Toast.LENGTH_SHORT).show();
                         }
                     }
+        });
+
+        btnLogout.setOnClickListener(view -> {
+            Intent intent = new Intent(Profile.this, Login.class);
+            Login.name = "";
+            Login.password = "";
+            intent.putExtra("IDuser", "");
+            startActivity(intent);
+            finish();
         });
 
         //On click select image
@@ -228,7 +234,7 @@ public class Profile extends AppCompatActivity {
         ImageView imgAvatar = (ImageView) findViewById(R.id.avatar);
 
         try {
-            JSONArray array = makeRequestProfile(name);
+            JSONArray array = makeRequestProfile(Login.name);
             if (array != null) {
                 int len = array.length();
                 for (int i = 0; i < len; i++) {

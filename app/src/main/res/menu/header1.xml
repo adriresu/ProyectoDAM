@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/headerIcon"
-        android:icon="@drawable/ic_baseline_person_24"
+        android:icon="@drawable/ic_baseline_person_normal_color_24"
         android:title="header/cabecera"
         app:showAsAction="ifRoom" />
     <item

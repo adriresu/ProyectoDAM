@@ -17,6 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/moreHeight"
             android:orientation="vertical">
 
             <LinearLayout
@@ -60,6 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/gradientcabecera">
 
                 <ImageView
@@ -382,14 +384,13 @@
             <ListView
                 android:id="@+id/listaPersonajes"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="115dp"
                 android:layout_marginLeft="12dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginBottom="10dp"
                 android:clickable="true"
-                android:divider="@color/black"
-                android:dividerHeight="2dp"
+                android:dividerHeight="15dp"
                 android:headerDividersEnabled="false" />
 
 
