@@ -292,7 +292,7 @@ public class Serie extends AppCompatActivity {
 
 
     private JSONArray makeRequest(String id) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "SerieInfo");
         multipartRequest.addFormField("id", id);
         multipartRequest.addFormField("End", "End");
@@ -302,7 +302,7 @@ public class Serie extends AppCompatActivity {
     };
 
     private JSONArray makeRequestCharacters(String idSerie) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "SerieInfoCharacter");
         multipartRequest.addFormField("id", idSerie);
         multipartRequest.addFormField("End", "End");
@@ -312,7 +312,7 @@ public class Serie extends AppCompatActivity {
     };
 
     private JSONArray makeRequestextraSerieInfo(String idSerie, String idUser) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "SerieExtraInfo");
         multipartRequest.addFormField("id", idSerie);
         multipartRequest.addFormField("idUser", idUser);
@@ -323,7 +323,7 @@ public class Serie extends AppCompatActivity {
     };
 
     private String makeRequestViewed(String idSerie, String idUser, int viewed) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "serieViewed");
         multipartRequest.addFormField("id", idSerie);
         multipartRequest.addFormField("idUser", idUser);
@@ -335,7 +335,7 @@ public class Serie extends AppCompatActivity {
     };
 
     private JSONArray makeRequestAddFavourite(String idSerie, String idUser) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "AddFavourite");
         multipartRequest.addFormField("usuario", idUser);
         multipartRequest.addFormField("favorita", idSerie);
@@ -346,7 +346,7 @@ public class Serie extends AppCompatActivity {
     };
 
     private String makeRequestLikeDislike(String idSerie, String idUser, String like) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "serieLikeDislike");
         multipartRequest.addFormField("idSerie", idSerie);
         multipartRequest.addFormField("idUser", idUser);

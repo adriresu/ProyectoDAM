@@ -99,10 +99,13 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(this, R.string.createduser_successfull , Toast.LENGTH_SHORT).show();
                     JSONObject dataUser = (JSONObject) jsonArrayCharacter.get(0);
                     String id = dataUser.getString("ID");
+                    Login.name = txtUsername.getText().toString();
+                    Login.password = txtPassword.getText().toString();
                     Intent intent = new Intent(Register.this, mainMenu.class);
                     intent.putExtra("user", txtUsername.getText().toString());
                     intent.putExtra("password", txtPassword.getText().toString());
                     intent.putExtra("IDuser", id);
+                    startActivity(intent);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -121,7 +124,7 @@ public class Register extends AppCompatActivity {
     }
 
     private JSONArray makeRequest(String name, String surname, String username, String password, String email) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "Register");
         multipartRequest.addFormField("name", username);
         multipartRequest.addFormField("surname", password);
@@ -135,7 +138,7 @@ public class Register extends AppCompatActivity {
     }
 
     private JSONArray makeRequestCheck(String username) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "CheckIfUser");
         multipartRequest.addFormField("username", username);
         multipartRequest.addFormField("End", "End");

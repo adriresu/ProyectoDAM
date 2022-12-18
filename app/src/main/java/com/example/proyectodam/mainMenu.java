@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class mainMenu extends AppCompatActivity {
 
@@ -112,6 +113,7 @@ public class mainMenu extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int typeMedia = -1;
+        boolean passed = false;
         ListView listView = (ListView)findViewById(R.id.customListaSeries);
         switch (item.getItemId()){
             case R.id.headerIcon:
@@ -120,6 +122,7 @@ public class mainMenu extends AppCompatActivity {
                 intent.putExtra("password", Login.password);
                 intent.putExtra("IDuser", Login.idUser);
                 startActivity(intent);
+                passed = true;
                 break;
             case R.id.headerIconOption1:
                 typeMedia = 0;
@@ -133,38 +136,71 @@ public class mainMenu extends AppCompatActivity {
                 typeMedia = 2;
                 getSupportActionBar().setTitle(getResources().getString(R.string.animes));
                 break;
+            case R.id.headerIconOption4:
+                typeMedia = 3;
+                getSupportActionBar().setTitle(getResources().getString(R.string.favourites));
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + item.getItemId());
         }
+        if (!passed){
+            listaSeries.clear();
+            JSONArray array;
+            JSONArray jsonArray;
+            try {
+                array = makeRequest(typeMedia);
+                jsonArray = (JSONArray)array;
+                if (jsonArray != null) {
+                    int len = jsonArray.length();
+                    for (int i=0;i<len;i++){
+                        JSONObject dataSerie = (JSONObject) jsonArray.get(i);
+                        String idSerie = dataSerie.getString("ID");
+                        String estadoSerie = dataSerie.getString("Estado");
+                        String tipoSerie = dataSerie.getString("Tipo");
+                        String tituloSerie = dataSerie.getString("Titulo");
 
-        listaSeries.clear();
-        JSONArray array;
-        JSONArray jsonArray;
-        try {
-            array = makeRequest(typeMedia);
-            jsonArray = (JSONArray)array;
-            if (jsonArray != null) {
-                int len = jsonArray.length();
-                for (int i=0;i<len;i++){
-                    JSONObject dataSerie = (JSONObject) jsonArray.get(i);
-                    String idSerie = dataSerie.getString("ID");
-                    String estadoSerie = dataSerie.getString("Estado");
-                    String tipoSerie = dataSerie.getString("Tipo");
-                    String tituloSerie = dataSerie.getString("Titulo");
+                        byte[] decodedString = Base64.decode(dataSerie.getString("Caratula"), Base64.DEFAULT);
+                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-                    byte[] decodedString = Base64.decode(dataSerie.getString("Caratula"), Base64.DEFAULT);
-                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), decodedByte, estadoSerie, tipoSerie, tituloSerie);
+                        listaSeries.add(serieTemp);
+                    }
+                    if (typeMedia == 3){
+                        try {
+                            array = makeRequestViewedSeries(Login.idUser);
+                            jsonArray = (JSONArray)array;
+                            if (jsonArray != null) {
+                                int len1 = listaSeries.size();
+                                int len2 = jsonArray.length();
+                                for (int ii=0;ii<len1;ii++){
+                                    boolean fav = false;
+                                    for (int i=0;i<len2;i++){
+                                        JSONObject dataSerie = (JSONObject) jsonArray.get(i);
+                                        String idSerie = dataSerie.getString("ID_serie");
+                                        if (listaSeries.get(ii).getID() == Integer.parseInt(idSerie)) {
+                                            fav = true;
+                                        }
+                                    }
+                                    if (!fav){
+                                        listaSeries.remove(ii);
+                                    }
+                                    //Object items = listView.getItemAtPosition(listaSeries.get(ii).getID());
+                                    //Toast.makeText(this, listaSeries.get(ii).getTitulo(), Toast.LENGTH_SHORT).show();
+                                }
 
-                    serieItem serieTemp = new serieItem(Integer.parseInt(idSerie), decodedByte, estadoSerie, tipoSerie, tituloSerie);
-                    listaSeries.add(serieTemp);
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
                 }
+                else{
+                    Toast.makeText(this, R.string.not_media_bd , Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            else{
-                Toast.makeText(this, R.string.not_media_bd , Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
             adaptador adaptador = new adaptador(this, listaSeries);
             listView.setAdapter(adaptador);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -178,11 +214,13 @@ public class mainMenu extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-        return true;
+        };
+
+    return true;
     }
 
     private JSONArray makeRequest(int Tipo) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180:80", "UTF-8");
         if (Tipo == 0){
             multipartRequest.addFormField("Tipo", "Series");
         }
@@ -192,7 +230,20 @@ public class mainMenu extends AppCompatActivity {
         else if(Tipo == 2){
             multipartRequest.addFormField("Tipo", "Animes");
         }
+        else if(Tipo == 3){
+            multipartRequest.addFormField("Tipo", "Favourites");
+        }
 
+        multipartRequest.addFormField("End", "End");
+        List<String> response = multipartRequest.finish();
+        JSONArray json = new JSONArray(response.get(0));
+        return json;
+    };
+
+    private JSONArray makeRequestViewedSeries(String idUser) throws Exception {
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
+        multipartRequest.addFormField("Tipo", "SeriesViewed");
+        multipartRequest.addFormField("id", idUser);
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
         JSONArray json = new JSONArray(response.get(0));

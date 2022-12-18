@@ -41,6 +41,8 @@
     <string name="gender">Genero</string>
     <string name="director">Director</string>
     <string name="title">Titulo</string>
+    <string name="cantConnect">Imposible conectarse al servidor</string>
+    <string name="incorrect">Nombre de usuario o contraseña incorrectos</string>
 
     //translate del codigo
     <string name="errorRegister01">El nombre de usuario debe de tener mas de 3 caracteres</string>
@@ -50,8 +52,8 @@
     <string name="errorRegister05">La contraseña debe tener 8 caracteres o más</string>
     <string name="errorRegister06">El formato del correo electronico no es valido</string>
     <string name="errorRegister07">Por favor escriba un correo electronico</string>
-    <string name="errorRegister08">El nombre debe tener más de 5 caracteres</string>
-    <string name="errorRegister09">El apellido debe tener más de 5 caracteres</string>
+    <string name="errorRegister08">El nombre debe tener más de 2 caracteres</string>
+    <string name="errorRegister09">El apellido debe tener más de 2 caracteres</string>
     <string name="errorRegister10">Ya existe ese usuario</string>
     <string name="errorRegister11">El número de telefono debe tener 9 caracteres</string>
     <string name="errorRegister12">El número de telefono solo debe contener números</string>
@@ -62,6 +64,7 @@
     <string name="series">SERIES</string>
     <string name="films">PELICULAS</string>
     <string name="animes">ANIMES</string>
+    <string name="favourites">FAVORITAS</string>
     <string name="options">OPCIONES</string>
     <string name="dislike">No me gusta</string>
     <string name="like">Me gusta</string>

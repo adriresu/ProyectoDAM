@@ -137,55 +137,55 @@ public class Profile extends AppCompatActivity {
 
         //On click save
         btnSave.setOnClickListener(view -> {
-                    Boolean flag = true;
+            Boolean flag = true;
 
-                    Bitmap bitmap = ((BitmapDrawable)imgAvatar.getDrawable()).getBitmap();
-                    String imageSend = getStringImage(bitmap);
+            Bitmap bitmap = ((BitmapDrawable)imgAvatar.getDrawable()).getBitmap();
+            String imageSend = getStringImage(bitmap);
 
 
 
-                    if (txtName.getText().toString().equals("") || txtName.getText().toString().length() < 3) {
-                        txtName.setError(getString(R.string.errorRegister08));
+            if (txtName.getText().toString().equals("") || txtName.getText().toString().length() < 3) {
+                txtName.setError(getString(R.string.errorRegister08));
+                flag = false;
+            }
+            if (txtSurname.getText().toString().equals("") || txtSurname.getText().toString().length() < 3) {
+                txtSurname.setError(getString(R.string.errorRegister09));
+                flag = false;
+            }
+            try {
+                String phoneNumber = txtPhone.getText().toString();
+                if (phoneNumber.length() != 0){
+                    Integer.valueOf(phoneNumber);
+                    if ((phoneNumber.length() < 9 && phoneNumber.length() > 0) || phoneNumber.length() > 9) {
+                        txtPhone.setError(getString(R.string.errorRegister11));
                         flag = false;
                     }
-                    if (txtSurname.getText().toString().equals("") || txtSurname.getText().toString().length() < 3) {
-                        txtSurname.setError(getString(R.string.errorRegister09));
-                        flag = false;
-                    }
-                    try {
-                        String phoneNumber = txtPhone.getText().toString();
-                        if (phoneNumber.length() != 0){
-                            Integer.valueOf(phoneNumber);
-                            if ((phoneNumber.length() < 9 && phoneNumber.length() > 0) || phoneNumber.length() > 9) {
-                                txtPhone.setError(getString(R.string.errorRegister11));
-                                flag = false;
-                            }
-                        }
-                    } catch (Exception e) {
-                        txtPhone.setError(getString(R.string.errorRegister12));
-                        flag = false;
-                    }
-                    ;
-                    if (txtEmail.getText().toString().isEmpty()) {
-                        txtEmail.setError(getString(R.string.errorRegister07));
-                        flag = false;
-                    }
-                    //Regex match
-                    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                    if (!(txtEmail.getText().toString().matches(emailPattern))) {
-                        txtEmail.setError(getString(R.string.errorRegister06));
-                        flag = false;
-                    }
-                    String stringSelected = spinner.getSelectedItem().toString();
-                    String selectedSerie = (stringSelected.split("-"))[0];
-                    if (flag) {
-                        try {
-                    makeRequestUpdateProfile(imageSend, txtName.getText().toString(), txtSurname.getText().toString(), txtPhone.getText().toString(), txtEmail.getText().toString(), selectedSerie, Login.name);
-                            Toast.makeText(this, R.string.updated, Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
-                            Toast.makeText(this, R.string.error_update , Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                }
+            } catch (Exception e) {
+                txtPhone.setError(getString(R.string.errorRegister12));
+                flag = false;
+            }
+            ;
+            if (txtEmail.getText().toString().isEmpty()) {
+                txtEmail.setError(getString(R.string.errorRegister07));
+                flag = false;
+            }
+            //Regex match
+            String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+            if (!(txtEmail.getText().toString().matches(emailPattern))) {
+                txtEmail.setError(getString(R.string.errorRegister06));
+                flag = false;
+            }
+            String stringSelected = spinner.getSelectedItem().toString();
+            String selectedSerie = (stringSelected.split("-"))[0];
+            if (flag) {
+                try {
+            makeRequestUpdateProfile(imageSend, txtName.getText().toString(), txtSurname.getText().toString(), txtPhone.getText().toString(), txtEmail.getText().toString(), selectedSerie, Login.name);
+                    Toast.makeText(this, R.string.updated, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(this, R.string.error_update , Toast.LENGTH_SHORT).show();
+                }
+            }
         });
 
         btnLogout.setOnClickListener(view -> {
@@ -253,7 +253,7 @@ public class Profile extends AppCompatActivity {
                     selectedSerie = Integer.parseInt(dataUser.getString("Favorita"));
                     typeUser = Integer.parseInt(dataUser.getString("Rol"));
 
-                    //characterItem characterTemp = new characterItem();
+
                 }
 
                 if (typeUser == 0){
@@ -285,15 +285,22 @@ public class Profile extends AppCompatActivity {
                 int len = array.length();
                 for (int i = 0; i < len; i++) {
                     JSONObject dataSerie = (JSONObject) array.get(i);
-                    seriesName.add(dataSerie.getString("ID") + "- " +  dataSerie.getString("Titulo"));
+                    if (dataSerie.getString("ID").equals(String.valueOf(selectedSerie)) ){
+                        seriesName.add(0, dataSerie.getString("ID") + "- " +  dataSerie.getString("Titulo"));
+                    }
+                    else{
+                        seriesName.add(dataSerie.getString("ID") + "- " +  dataSerie.getString("Titulo"));
+                    }
                 }
             }
+            // dropdown.setSelection(selectedSerie, true); No funciona
             ArrayAdapter<String> adapter = new ArrayAdapter<>(Profile.this, android.R.layout.simple_spinner_dropdown_item, seriesName);
             dropdown.setAdapter(adapter);
         }
         catch (Exception e){
             e.printStackTrace();
         };
+
 
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -307,10 +314,12 @@ public class Profile extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             };
         });
+
     };
 
+
     private JSONArray makeRequest() throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "SerieName");
         multipartRequest.addFormField("End", "End");
         List<String> response = multipartRequest.finish();
@@ -318,7 +327,7 @@ public class Profile extends AppCompatActivity {
         return json;
     };
     private JSONArray makeRequestProfile(String name) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "UserInfo");
         multipartRequest.addFormField("usuario", name);
         multipartRequest.addFormField("End", "End");
@@ -327,7 +336,7 @@ public class Profile extends AppCompatActivity {
         return json;
     };
     private void makeRequestUpdateProfile(String binaryImage, String name, String apellidos, String phone, String email, String favorita, String usuario) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "UpdateUserInfo");
         multipartRequest.addFormField("nombre", name);
         multipartRequest.addFormField("apellidos", apellidos);

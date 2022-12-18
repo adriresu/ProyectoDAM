@@ -82,7 +82,7 @@ public class Character extends AppCompatActivity {
     }
 
     private JSONArray makeRequest(String idSerie) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://192.168.1.136:80", "UTF-8");
+        MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180", "UTF-8");
         multipartRequest.addFormField("Tipo", "CharacterInfo");
         multipartRequest.addFormField("id", idSerie);
         multipartRequest.addFormField("End", "End");

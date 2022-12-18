@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
+import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 
@@ -30,12 +33,9 @@ public class Login extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-
         setContentView(R.layout.activity_login);
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
 
         //Control definitions
         EditText txtUsername = (EditText) findViewById(R.id.inputNameLogin);
@@ -70,9 +70,6 @@ public class Login extends AppCompatActivity {
                         intent.putExtra("IDuser", id);
                         startActivity(intent);
                     }
-                    else{
-                        Toast.makeText(this, R.string.not_media_bd , Toast.LENGTH_SHORT).show();
-                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -88,14 +85,22 @@ public class Login extends AppCompatActivity {
     }
 
     private JSONArray makeRequest(String username, String password) throws Exception {
-        MultipartUtility multipartRequest = new MultipartUtility("http://79.116.2.183:80", "UTF-8");
-        multipartRequest.addFormField("Tipo", "Login");
-        multipartRequest.addFormField("username", username);
-        multipartRequest.addFormField("password", password);
-        multipartRequest.addFormField("End", "End");
-        List<String> response = multipartRequest.finish();
-        JSONArray json = new JSONArray(response.get(0));
-        return json;
+        try {
+            MultipartUtility multipartRequest = new MultipartUtility("http://86.127.253.180:80", "UTF-8");
+            multipartRequest.addFormField("Tipo", "Login");
+            multipartRequest.addFormField("username", username);
+            multipartRequest.addFormField("password", password);
+            multipartRequest.addFormField("End", "End");
+            List<String> response = multipartRequest.finish();
+            JSONArray json = new JSONArray(response.get(0));
+            return json;
+        }catch (SocketTimeoutException exception){
+            Toast.makeText(this, R.string.cantConnect, Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception exception){
+            Toast.makeText(this, R.string.incorrect, Toast.LENGTH_SHORT).show();
+        }
+        return null;
     }
 
 };

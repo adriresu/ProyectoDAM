@@ -19,4 +19,8 @@
         android:id="@+id/headerIconOption3"
         android:title="@string/animes"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/headerIconOption4"
+        android:title="@string/favourites"
+        app:showAsAction="never" />
 </menu>
